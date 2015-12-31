@@ -1,4 +1,4 @@
-# Hotel-Reservation-System
+# University Accommodation Management System
 TWT GROUP ASSIGNMENT <br>
 Tutorial Group: G10B <br>
 Member: <br>
