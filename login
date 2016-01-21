@@ -25,12 +25,12 @@
 
 <style>
 
-body   
+body
 {
 	background-color: #444;
     background: url("img/mmu_login.jpg");
-	
- 
+
+
 }
 
 .vertical-offset-100
@@ -55,13 +55,13 @@ body
 
 </head>
 
- 
+
       <body>
-  
- 
+
+
 
 <div class="container">
-	
+
   <div class="page-header">
     <img src ="img/mmu_login_logo.png" alt="MMU">
   </div>
@@ -70,7 +70,7 @@ body
     	<div class="col-md-4 col-md-offset-4">
     		<div class="panel panel-default">
 			  	<div class="panel-heading">
-			    	<h3 class="panel-title">MMU Booking System</h3>
+			    	<h3 class="panel-title">MMU Accommodation Management System</h3>
 			 	</div>
 			  	<div class="panel-body">
 			    	<form accept-charset="UTF-8" role="form">
@@ -91,5 +91,5 @@ body
 	</div>
 </div>
         </body>
-           
+
 </html>
