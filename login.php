@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php
+	include("connection.php");
+	session_start();
+?>
+
 <html>
 <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
 <!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
@@ -73,7 +78,7 @@ body
 			    	<h3 class="panel-title">MMU Accommodation Management System</h3>
 			 	</div>
 			  	<div class="panel-body">
-			    	<form accept-charset="UTF-8" role="form">
+			    	<form accept-charset="UTF-8" role="form" method="POST" >
                     <fieldset>
 			    	  	<div class="form-group">
 			    		    <input class="form-control" placeholder="ID" name="id" type="text">
@@ -82,7 +87,7 @@ body
 			    			<input class="form-control" placeholder="Password" name="password" type="password" value="">
 			    		</div>
 			    		<h6>Password is case sensitive</h6>
-			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
+			    		<input class="btn btn-lg btn-success btn-block" type="submit" name="submit" value="Login">
 			    	</fieldset>
 			      	</form>
 			    </div>
@@ -93,3 +98,38 @@ body
         </body>
 
 </html>
+
+<?php
+
+if(isset($_POST['submit']))
+{
+	if(empty($_POST['id']) || empty($_POST['password']))
+    {
+?>
+		<script>alert("The username or password is empty!");</script>
+<?php
+    }
+	else
+	{
+		$id=$_POST['id'];
+		$pass=$_POST['password'];
+		
+		$query=mysql_query("select * from student where student_id='$id' AND student_pass='$pass'");
+		
+		$rows = mysql_num_rows($query);
+		
+		if ($rows == 1) 
+		{
+			$_SESSION['id']=$id; // Initializing Session
+			header("location: index.php"); // Redirecting To Other Page
+		}
+		else 
+		{
+?>
+		<script>alert("Username or Password is invalid!");</script>
+<?php
+		}
+	}
+}
+?>
+
