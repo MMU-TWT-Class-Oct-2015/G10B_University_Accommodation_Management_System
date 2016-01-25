@@ -8,8 +8,9 @@
 		 
 		$sess_id=$_SESSION["id"];
 		
-		$student_result = mysql_query("select * from student where student_id=$sess_id");
+		$student_result = mysql_query("select * from student,course,relative where student.student_id=$sess_id and student.course_id=course.course_id and relative.student_id=$sess_id");
 		$student_row = mysql_fetch_assoc($student_result); 
+		
 	}
 ?>
 <html>
@@ -108,17 +109,17 @@
 					<tr><td>Academic Status</td><td><?php echo $student_row["student_category"]; ?></td></tr>
 					<tr><td>Address</td><td><?php echo $student_row["student_address"]; ?></td></tr>
 					<tr><td>Date of Birth</td><td><?php echo $student_row["student_dob"]; ?></td></tr>
-					<tr><td>Course</td><td><?php echo "under maintainance"; ?></td></tr>
+					<tr><td>Course</td><td><?php echo $student_row["course_title"] ?></td></tr>
 					<tr><td>Rent Status</td><td><?php echo $student_row["student_status"]; ?></td></tr>
 					<tr><td colspan="2" style="font-weight:bold;">Next-of-Kin</td></tr>
 					<tr><td colspan="2" style="color:skyblue;"><?php ?>
-						<a href="#" title="Update next-of-kin profile">
+						<a href="#" title="Update next-of-kin profile"><?php echo $student_row["relative_name"]; ?>
 							<span class="glyphicon glyphicon-edit" style="float:right;"></span>
 						</a></td>
 					</tr>
-					<tr><td>Relationship</td><td><?php echo "under maintainance"; ?></td></tr>
-					<tr><td>Contact Number</td><td><?php echo "under maintainance"; ?></td></tr>
-					<tr><td>Address</td><td><?php echo "under maintainance"; ?></td></tr>
+					<tr><td>Relationship</td><td><?php echo $student_row["relative_relation"]; ?></td></tr>
+					<tr><td>Contact Number</td><td><?php echo $student_row["relative_hp"]; ?></td></tr>
+					<tr><td>Address</td><td><?php echo $student_row["relative_address"]; ?></td></tr>
 					
 				</table>
 				</div>
