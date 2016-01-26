@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 23, 2016 at 08:42 AM
+-- Generation Time: Jan 26, 2016 at 07:55 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -47,6 +47,13 @@ CREATE TABLE `course` (
   `department_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `course`
+--
+
+INSERT INTO `course` (`course_id`, `course_title`, `course_leader`, `department_name`) VALUES
+('ITSC', 'Security Technology', 'DR. Lim Eng Huat', 'Faculty of Information Science & Technology');
+
 -- --------------------------------------------------------
 
 --
@@ -68,12 +75,20 @@ CREATE TABLE `hall` (
 --
 
 CREATE TABLE `relative` (
-  `relative_id` varchar(5) NOT NULL,
+  `relative_id` int(5) NOT NULL,
   `relative_name` varchar(50) NOT NULL,
   `relative_relation` varchar(50) NOT NULL,
   `relative_address` varchar(50) NOT NULL,
-  `relative_hp` int(11) NOT NULL
+  `relative_hp` int(11) NOT NULL,
+  `student_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `relative`
+--
+
+INSERT INTO `relative` (`relative_id`, `relative_name`, `relative_relation`, `relative_address`, `relative_hp`, `student_id`) VALUES
+(1, 'Ezio Tiu', 'Father', '15, Jalan Bobo, Taman Ina', 123456789, 1121116126);
 
 -- --------------------------------------------------------
 
@@ -97,7 +112,8 @@ CREATE TABLE `room` (
 CREATE TABLE `staff` (
   `staff_id` varchar(5) NOT NULL,
   `staff_name` varchar(50) NOT NULL,
-  `staff_role` varchar(50) NOT NULL
+  `staff_role` varchar(50) NOT NULL,
+  `staff_pass` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -114,8 +130,15 @@ CREATE TABLE `student` (
   `student_category` varchar(50) NOT NULL,
   `student_status` varchar(10) NOT NULL,
   `course_id` varchar(5) NOT NULL,
-  `relative_id` varchar(5) NOT NULL
+  `student_pass` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`student_id`, `student_name`, `student_address`, `student_dob`, `student_category`, `student_status`, `course_id`, `student_pass`) VALUES
+(1121116126, 'Toures Tiu', '15, Jalan Emas, Taman Taktau', '2016-01-01', 'undergraduate', 'none', 'ITSC', '123456789');
 
 -- --------------------------------------------------------
 
@@ -170,6 +193,12 @@ ALTER TABLE `staff`
   ADD PRIMARY KEY (`staff_id`);
 
 --
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`student_id`);
+
+--
 -- Indexes for table `waiting`
 --
 ALTER TABLE `waiting`
@@ -179,6 +208,11 @@ ALTER TABLE `waiting`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `relative`
+--
+ALTER TABLE `relative`
+  MODIFY `relative_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `waiting`
 --
