@@ -57,7 +57,7 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -66,7 +66,7 @@
                 <a class="navbar-brand" href="index.php">MMU Accommodation Managament System</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float:right;margin-right:10px;">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="rent.php">View Available Room</a>
@@ -93,7 +93,7 @@
     </nav>
   
 			<div class="container">
-			  <div class="jumbotron" style="height:180px; margin-top:70px;">
+			  <div class="jumbotron" style="height:180px; margin-top:70px;margin-right:20px;">
 				<img src="img/mmulogo.png" alt="MMU" style="width: 300px;height:100px;">
 				<table style="float:right;">
 				<tr><td><h3 style="float:right;">MMU Accommodation Managament System</h3></td></tr>
@@ -198,11 +198,11 @@
 				</div>
 				
 				<div class="col-sm-4">
-					<img src="img/hostel1.jpg" style="width:700px;height:230px;margin-left:20px;">
+					<img src="img/hostel1.jpg" style="width:730px;height:230px;">
 					<table>
 					<tr>
 					<td>
-					<div class="well" style="margin-left:20px;margin-top:30px;width:400px;">
+					<div class="well" style="margin-top:30px;width:400px;">
 						
 						<h3 style="color:orange;">5 Easy Booking Step</h3>
 						<ol>
@@ -219,7 +219,7 @@
 					</div>
 					</td>
 					<td>
-					<img src="img/hostel3.jpg" style="width:300px;height:230px;padding:20px;">
+					<img src="img/hostel3.jpg" style="width:auto;height:230px;padding:20px;">
 					</td>
 					</tr>
 					</table>
