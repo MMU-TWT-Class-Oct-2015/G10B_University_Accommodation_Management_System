@@ -35,6 +35,11 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	 <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
 	 <script src="jquery.js"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	 
+
+
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
 	
 <style>
@@ -101,9 +106,42 @@
 				  <input class="btn btn-lg btn-success btn-block" type="button" onclick="window.location='checkstatus.php'" value="Check Booking Status">
 				<table class="table table-bordered" style="text-align:center;margin-top:30px;">
 					<tr><td colspan="2" style="color:skyblue;"><?php echo $student_row["student_name"]; ?>
-						<a href="#" title="Update profile">
-							<span class="glyphicon glyphicon-edit" style="float:right;"></span>
-						</a></td>
+						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
+						<!-- Modal -->
+						<div id="myModal" class="modal fade" role="dialog">
+						  <div class="modal-dialog">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+							  <div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Update Profile</h4>
+							  </div>
+							  <div class="modal-body">
+								<table class="table table-hover" >
+									<tbody>
+										<tr>
+											<td><b>Contact Number: </b></td>
+											<td> <input type="text" name="relative_hp">
+											</td>
+										</tr>
+										<tr>
+											<td><b>Address:</b> </td>
+											<td> <input type="text" name="relative_address"></td>
+											
+										</tr>   
+										
+									</tbody>
+								  </table>    
+							  </div>
+							  <div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal">Save and Exit</button>
+							  </div>
+							</div>
+
+						  </div>
+						</div></td>
 					</tr>
 					<tr><td>Matric Number</td><td><?php echo $student_row["student_id"]; ?></td></tr>
 					<tr><td>Academic Status</td><td><?php echo $student_row["student_category"]; ?></td></tr>
@@ -112,10 +150,45 @@
 					<tr><td>Course</td><td><?php echo $student_row["course_title"] ?></td></tr>
 					<tr><td>Rent Status</td><td><?php echo $student_row["student_status"]; ?></td></tr>
 					<tr><td colspan="2" style="font-weight:bold;">Next-of-Kin</td></tr>
-					<tr><td colspan="2" style="color:skyblue;"><?php ?>
-						<a href="#" title="Update next-of-kin profile"><?php echo $student_row["relative_name"]; ?>
-							<span class="glyphicon glyphicon-edit" style="float:right;"></span>
-						</a></td>
+					<tr><td colspan="2" style="color:skyblue;"><?php echo $student_row["relative_name"]; ?>
+						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
+						<!-- Modal -->
+						<div id="myModal" class="modal fade" role="dialog">
+						  <div class="modal-dialog">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+							  <div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Update Profile</h4>
+							  </div>
+							  <div class="modal-body">
+								<table class="table table-hover" >
+									<tbody>
+										<tr>
+											<td><b>Contact Number: </b></td>
+											<td> <input type="text" name="relative_hp">
+											</td>
+										</tr>
+										<tr>
+											<td><b>Address:</b> </td>
+											<td> <input type="text" name="relative_address"></td>
+											
+										</tr>   
+										
+									</tbody>
+								  </table>    
+							  </div>
+							  <div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal">Save and Exit</button>
+							  </div>
+							</div>
+
+						  </div>
+						</div>
+						</td>
+						
 					</tr>
 					<tr><td>Relationship</td><td><?php echo $student_row["relative_relation"]; ?></td></tr>
 					<tr><td>Contact Number</td><td><?php echo $student_row["relative_hp"]; ?></td></tr>
