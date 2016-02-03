@@ -1,4 +1,21 @@
 <!DOCTYPE html>
+<?php
+	include("connection.php");
+	session_start();
+	
+	if (isset($_SESSION['id']))
+	{
+		 
+		$sess_id=$_SESSION["id"];
+		
+		$student_result = mysql_query("select * from student,course,relative where student.student_id=$sess_id and student.course_id=course.course_id and relative.student_id=$sess_id");
+		$student_row = mysql_fetch_assoc($student_result); 
+		
+		$hall_result = mysql_query("select * from hall");
+		
+		
+	}
+?>
 <html>
 <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
 <!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
@@ -59,7 +76,7 @@
                         <a href="#">About</a>
                     </li>
                     <li>
-                        <a href="#" style="color:skyblue;">Leong Yoong Wah</a>
+                        <a href="#" style="color:skyblue;"><?php echo $student_row["student_name"]; ?></a>
                     </li>
 					<li>
                         <a href="#">Logout</a>
@@ -87,25 +104,94 @@
 				 <h3 style="color:skyblue;font-weight:bold;text-align:center;">Rent a Room</h3>
 				
 				<table class="table table-bordered" style="text-align:center;margin-top:30px;">
-					<tr><td colspan="2" style="color:skyblue;">Leong Yoong Wah
-						<a href="#" title="Update profile">
-							<span class="glyphicon glyphicon-edit" style="float:right;"></span>
-						</a></td>
+					<tr><td colspan="2" style="color:skyblue;"><?php echo $student_row["student_name"]; ?>
+						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
+						<!-- Modal -->
+						<div id="myModal" class="modal fade" role="dialog">
+						  <div class="modal-dialog">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+							  <div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Update Profile</h4>
+							  </div>
+							  <div class="modal-body">
+								<table class="table table-hover" >
+									<tbody>
+										<tr>
+											<td><b>Contact Number: </b></td>
+											<td> <input type="text" name="relative_hp">
+											</td>
+										</tr>
+										<tr>
+											<td><b>Address:</b> </td>
+											<td> <input type="text" name="relative_address"></td>
+											
+										</tr>   
+										
+									</tbody>
+								  </table>    
+							  </div>
+							  <div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal">Save and Exit</button>
+							  </div>
+							</div>
+
+						  </div>
+						</div></td>
 					</tr>
-					<tr><td>Matric Number</td><td>1121115859</td></tr>
-					<tr><td>Academic Year</td><td>Second Year</td></tr>
-					<tr><td>Contact Number</td><td>01110646796</td></tr>
-					<tr><td>Address</td><td>Street</br>City</br>Town</br>Postcode</td></tr>
-					<tr><td>Date of Birth</td><td>0203</td></tr>
+					<tr><td>Matric Number</td><td><?php echo $student_row["student_id"]; ?></td></tr>
+					<tr><td>Academic Status</td><td><?php echo $student_row["student_category"]; ?></td></tr>
+					<tr><td>Address</td><td><?php echo $student_row["student_address"]; ?></td></tr>
+					<tr><td>Date of Birth</td><td><?php echo $student_row["student_dob"]; ?></td></tr>
+					<tr><td>Course</td><td><?php echo $student_row["course_title"] ?></td></tr>
+					<tr><td>Rent Status</td><td><?php echo $student_row["student_status"]; ?></td></tr>
 					<tr><td colspan="2" style="font-weight:bold;">Next-of-Kin</td></tr>
-					<tr><td colspan="2" style="color:skyblue;">Leong X X
-						<a href="#" title="Update next-of-kin profile">
-							<span class="glyphicon glyphicon-edit" style="float:right;"></span>
-						</a></td>
+					<tr><td colspan="2" style="color:skyblue;"><?php echo $student_row["relative_name"]; ?>
+						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
+						<!-- Modal -->
+						<div id="myModal" class="modal fade" role="dialog">
+						  <div class="modal-dialog">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+							  <div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Update Profile</h4>
+							  </div>
+							  <div class="modal-body">
+								<table class="table table-hover" >
+									<tbody>
+										<tr>
+											<td><b>Contact Number: </b></td>
+											<td> <input type="text" name="relative_hp">
+											</td>
+										</tr>
+										<tr>
+											<td><b>Address:</b> </td>
+											<td> <input type="text" name="relative_address"></td>
+											
+										</tr>   
+										
+									</tbody>
+								  </table>    
+							  </div>
+							  <div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal">Save and Exit</button>
+							  </div>
+							</div>
+
+						  </div>
+						</div>
+						</td>
+						
 					</tr>
-					<tr><td>Relationship</td><td>Father</td></tr>
-					<tr><td>Contact Number</td><td>012xxxxxxx</td></tr>
-					<tr><td>Address</td><td>Street</br>City</br>Town</br>Postcode</td></tr>
+					<tr><td>Relationship</td><td><?php echo $student_row["relative_relation"]; ?></td></tr>
+					<tr><td>Contact Number</td><td><?php echo $student_row["relative_hp"]; ?></td></tr>
+					<tr><td>Address</td><td><?php echo $student_row["relative_address"]; ?></td></tr>
 					
 				</table>
 				</div>
@@ -114,20 +200,26 @@
 				
 				<div class="col-sm-4">
 				<h3>Please select a Hall</h3>
+				<form method="POST">
 				<table style="width:700px;">
 				<tr>
 				<td><div class="panel panel-info" style="padding:5px;margin:5px;height:200px;">
-					  <div class="panel-heading">Hall Ixora</div>
+					  <div class="panel-heading">
+												<select name="hall">
+												<?php
+													while ($hall_row = mysql_fetch_array($hall_result)) 
+													{
+														echo '<option value="'.$hall_row['hall_name'].'">'.$hall_row['hall_name'].'</option>';
+													}
+												?>
+												</select></div>		
 					  <div class="panel-body">
 					  <table>
 					  <tr>
-						<td style="width:250px;">
-							<img src="img/ixoralogo.jpg" style="width:200px;height:55px;">
-						</td>
 						<td>
-							<p>	Address:<br/>
-								Manager:<br/>
-								Contact Number:<br/>
+							<p>	Address: <?php echo $hall_row["hall_address"]; ?><br/>
+								Manager: <?php echo $hall_row["hall_manager"]; ?><br/>
+								Contact Number: <?php echo $hall_row["hall_hp"]; ?>:<br/>
 							</p>
 						</td>
 						</tr>
@@ -137,29 +229,8 @@
 					</div>
 				</td>
 				</tr>
-				<tr>
-				<td><div class="panel panel-info" style="padding:5px;margin:5px;height:200px;">
-					  <div class="panel-heading">Hall EP</div>
-					  <div class="panel-body">
-					  <table>
-					  <tr>
-						<td style="width:250px;">
-							<img src="img/eplogo.png" style="width:200px;height:55px;">
-						</td>
-						<td>
-							<p>	Address:<br/>
-								Manager:<br/>
-								Contact Number:<br/>
-							</p>
-						</td>
-						</tr>
-						</table>
-						<input class="btn btn-lg btn-warning  btn-block" type="button" name="hall2" value="Select">
-					  </div>
-					</div>
-				</td>
-				</tr>
 				</table>
+				</form>
 				</div>
 				
 			  </div>
