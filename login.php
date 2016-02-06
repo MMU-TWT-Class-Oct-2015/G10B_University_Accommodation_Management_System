@@ -102,17 +102,17 @@ body
 <?php
 
 if(isset($_POST['submit']))
-{
+{	$id=$_POST['id'];
+	$pass=$_POST['password'];
+	
 	if(empty($_POST['id']) || empty($_POST['password']))
     {
 ?>
 		<script>alert("The username or password is empty!");</script>
 <?php
     }
-	else
+	else if(0<mysql_num_rows(mysql_query("select * from student where student_id='$id' AND student_pass='$pass'")))
 	{
-		$id=$_POST['id'];
-		$pass=$_POST['password'];
 		
 		$query=mysql_query("select * from student where student_id='$id' AND student_pass='$pass'");
 		
@@ -129,6 +129,25 @@ if(isset($_POST['submit']))
 		<script>alert("Username or Password is invalid!");</script>
 <?php
 		}
+	}
+	else if(0<mysql_num_rows(mysql_query("select * from staff where staff_id='$id' AND staff_pass='$pass'")))
+	{
+		$adminquery=mysql_query("select * from staff where staff_id='$id' AND staff_pass='$pass'");
+		
+		$adminrows = mysql_num_rows($adminquery);
+		
+		if ($adminrows == 1) 
+		{
+			$_SESSION['id']=$id; // Initializing Session
+			header("location: admin_index.php"); // Redirecting To Other Page
+		}
+		else 
+		{
+?>
+		<script>alert("Username or Password is invalid!");</script>
+<?php
+		}
+	
 	}
 }
 ?>
