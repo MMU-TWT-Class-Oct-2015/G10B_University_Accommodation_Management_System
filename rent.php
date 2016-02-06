@@ -197,11 +197,12 @@
 				
 				<div class="col-sm-4">
 				<h3>Please select a Hall</h3>
-				<form method="POST">
+				<form method="POST" action="room.php">
 				<table style="width:700px;">
 				<tr>
-				<td><div class="panel panel-info" style="padding:5px;margin:5px;height:280px;">
+				<td><div class="panel panel-info" style="padding:5px;margin:5px;height:130px;">
 					  <div class="panel-heading">
+												Hall name : 
 												<select name="hall">
 												<?php
 													while ($hall_row = mysql_fetch_array($hall_result)) 
@@ -213,36 +214,7 @@
 												?>
 												</select></div>		
 					  <div class="panel-body">
-						<?php
-							if(isset($_POST['btn_hall']))
-							{
-								$hallid=$_POST['hall'];
-								$hall_result = mysql_query("select * from hall where hall_id='$hallid'");
-								$hall_row = mysql_fetch_assoc($hall_result);
-							}
-						?>
-					  <table>
-					  <tr>
-						<td>
-								Room: 	<select name="hall">
-											<?php
-												$room_result = mysql_query("select * from room where hall_id='$hallid'");
-												while ($room_row = mysql_fetch_array($room_result)) 
-												{
-													$room_id = $room_row['place_id'];
-													$room_num = $room_row['room_num'];
-													echo "<option value='$room_id'>$room_num</option>";
-												}
-											?>
-										</select><br/>
-								Address: <?php echo $hall_row["hall_address"]; ?><br/>
-								Manager: <?php echo $hall_row["hall_manager"]; ?><br/>
-								Contact Number: <?php echo $hall_row["hall_hp"]; ?><br/><br/>
-						</td>
-						</tr>
-						</table>
 						<input class="btn btn-lg btn-warning btn-block" type="submit" name="btn_hall" value="Select">
-						<input class="btn btn-lg btn-warning btn-block" type="submit" name="btn_book" value="Book">
 					  </div>
 					</div>
 				</td>
