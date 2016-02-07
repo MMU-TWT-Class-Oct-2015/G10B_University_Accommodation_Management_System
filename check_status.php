@@ -222,10 +222,10 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Lease ID</th>
-                                        <th>Place ID</th>
+                                        
+										<th>Hall Name</th>
+										<th>Hall Manager</th>
 										<th>Room Number</th>
-										<th>Hall ID</th>
                                         <th>Start date</th>
 										<th>End Date</th>
 										<th>Status</th>
@@ -234,21 +234,21 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>L0012</td>
-                                        <td>P0001</td>
+                                        
+										<td>Hall A</td>
+										<td>Frank Lampard</td>
 										<td>15</td>
-										<td>H0001</td>
                                         <td>1st sem</td>
                                         <td>2nd sem</td>
 										<td>pending</td>
                                     </tr>
                                     <tr>
-                                        <td>L0014</td>
-                                        <td>P0002</td>
+                                        
+										<td>Hall B</td>
+										<td>John Terry</td>
 										<td>30</td>
-										<td>H0002</td>
-                                        <td>3rd sem</td>
                                         <td>1st sem</td>
+                                        <td>3rd sem</td>
 										<td>Approved</td>
                                     </tr>
                                    
