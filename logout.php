@@ -4,6 +4,7 @@ include("connection.php");
 
 
 unset($_SESSION["id"]);
+unset($_SESSION["rid"]);
 session_destroy(); 
 
 
