@@ -43,8 +43,23 @@
 <!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
 	
 <style>
+.breadcrumb {
+  padding: 8px 0px;
+  margin-bottom: 20px;
+  margin-left:15px;
+  margin-right:15px;
+  list-style: none;
+  background-color: transparent;
 
+}
 
+.btn-info {
+	border-color:white;
+}
+
+.btn-info:hover {
+	border-color:#ABB7B7;
+}
 </style>
 
 
@@ -101,12 +116,18 @@
 				</table>
 			  </div>
 			  <div class="row">
+			  <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i>  <a href="index.html">Home</a>
+                            </li>
+                           
+                        </ol>
 				<div class="col-sm-4">
 				  
 				  <input class="btn btn-lg btn-success btn-block" type="button" onclick="window.location='checkstatus.php'" value="Check Booking Status">
 				<table class="table table-bordered" style="text-align:center;margin-top:30px;">
-					<tr><td colspan="2" style="color:skyblue;"><?php echo $student_row["student_name"]; ?>
-						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
+						<tr><td colspan="2" style="background-color:#019875;color:white;font-size:20pt;font-family:serif";"><?php echo $student_row["student_name"]; ?>
+						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="background-color:#019875;float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
 						<!-- Modal -->
 						<div id="myModal" class="modal fade" role="dialog">
 						  <div class="modal-dialog">
@@ -150,8 +171,8 @@
 					<tr><td>Course</td><td><?php echo $student_row["course_title"] ?></td></tr>
 					<tr><td>Rent Status</td><td><?php echo $student_row["student_status"]; ?></td></tr>
 					<tr><td colspan="2" style="font-weight:bold;">Next-of-Kin</td></tr>
-					<tr><td colspan="2" style="color:skyblue;"><?php echo $student_row["relative_name"]; ?>
-						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
+					<tr><td colspan="2" style="background-color:#019875;color:white;font-size:20pt;font-family:serif;";"><?php echo $student_row["relative_name"]; ?>
+						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="background-color:#019875;float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
 						<!-- Modal -->
 						<div id="myModal" class="modal fade" role="dialog">
 						  <div class="modal-dialog">
