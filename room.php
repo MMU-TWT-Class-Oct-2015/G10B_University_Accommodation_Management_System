@@ -2,6 +2,7 @@
 <?php
 	include("connection.php");
 	session_start();
+	ob_start();
 	
 	if (isset($_SESSION['id']))
 	{
@@ -201,7 +202,7 @@
 				
 				<div class="col-sm-4">
 				<h3>Please select a Room</h3>
-				<form method="POST" action="book.php">
+				<form method="POST">
 				<table style="width:700px;">
 				<tr>
 				<td><div class="panel panel-info" style="padding:5px;margin:5px;height:230px;">
@@ -256,3 +257,12 @@
         </body>
            
 </html>
+<?php 
+					if(isset($_POST['btn_room']))
+					{
+						$roomid=$_POST['room'];
+						$_SESSION['rid']=$roomid;
+						
+						header('Location: book.php');
+					}
+?>
