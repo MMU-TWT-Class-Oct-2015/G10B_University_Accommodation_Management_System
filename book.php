@@ -2,6 +2,7 @@
 <?php
 	include("connection.php");
 	session_start();
+	ob_start();
 	
 	if (isset($_SESSION['id']))
 	{
@@ -194,9 +195,12 @@
 				</div>
 				
 				<?php
-					$roomid=$_POST['room'];
-					$room_result = mysql_query("select * from room where place_id='$roomid'");
-					$room_row = mysql_fetch_assoc($room_result);
+					if(isset($_SESSION['rid']))
+					{
+						$roomid=$_SESSION['rid'];
+						$room_result = mysql_query("select * from room where place_id='$roomid'");
+						$room_row = mysql_fetch_assoc($room_result);
+					}
 				?>
 				
 				<div class="col-sm-4">
@@ -206,6 +210,58 @@
 				<tr>
 				<td><div class="panel panel-info" style="padding:5px;margin:5px;height:330px;">
 						<div class="panel-heading">
+						<?php 
+							if(isset($_POST['btn_book']))
+							{
+								$datestart = $_POST['date_start'];
+								$dateend = $_POST['date_end'];
+								$studentid = $student_row["student_id"];
+								
+								if($datestart >= $dateend)
+								{
+						?>		<script>alert("Invalid date!");</script>
+						<?php
+								}
+								else
+								{
+									if($datestart == 1)
+										$semstart = "15/16 Semester 1";
+									else if($datestart == 2)
+										$semstart = "15/16 Semester 2";
+									else if($datestart == 3)
+										$semstart = "15/16 Semester 3";
+									else if($datestart == 4)
+										$semstart = "16/17 Semester 1";
+									else if($datestart == 5)
+										$semstart = "16/17 Semester 2";
+									else if($datestart == 6)
+										$semstart = "16/17 Semester 3";
+									
+									if($dateend == 1)
+										$semend = "15/16 Semester 1";
+									else if($dateend == 2)
+										$semend = "15/16 Semester 2";
+									else if($dateend == 3)
+										$semend = "15/16 Semester 3";
+									else if($dateend == 4)
+										$semend = "16/17 Semester 1";
+									else if($dateend == 5)
+										$semend = "16/17 Semester 2";
+									else if($dateend == 6)
+										$semend = "16/17 Semester 3";
+								
+									mysql_query("insert into waiting (place_id,student_id,wait_start,wait_end) values ('$roomid','$studentid','$semstart','$semend')");
+									mysql_query("update student set student_status='pending' where student_id='$sess_id'");
+									mysql_query("update room set room_status='pending' where place_id='$roomid'");
+									?>
+										<script>
+											alert("Wait for admin to approve your statement.");
+											window.location.href = "index.php";
+										</script>
+									<?php
+								}
+							}
+					?>
 							Room detail
 						</div>
 					  <div class="panel-body">
@@ -223,14 +279,30 @@
 								Contact Number: <?php echo $hall_row["hall_hp"]; ?><br/><br/>
 								Room number: <?php echo $room_row["room_num"]; ?><br/>
 								Rental: RM <?php echo $room_row["room_rent"]; ?><br/>
-								Start: <br/>
-								End: <br/><br/>
+								Start: 	<select name="date_start">
+											<option value="1">15/16 Semester 1</option>
+											<option value="2">15/16 Semester 2</option>
+											<option value="3">15/16 Semester 3</option>
+											<option value="4">16/17 Semester 1</option>
+											<option value="5">16/17 Semester 2</option>
+											<option value="6">16/17 Semester 3</option>
+										</select><br/>
+								End:	<select name="date_end">
+											<option value="1">15/16 Semester 1</option>
+											<option value="2">15/16 Semester 2</option>
+											<option value="3">15/16 Semester 3</option>
+											<option value="4">16/17 Semester 1</option>
+											<option value="5">16/17 Semester 2</option>
+											<option value="6">16/17 Semester 3</option>
+										</select><br/><br/>
 						</td>
 						</tr>
 						</table>
-						<input class="btn btn-lg btn-warning btn-block" type="submit" name="btn_room" value="Book">
+						<input class="btn btn-lg btn-warning btn-block" type="submit" name="btn_book" value="Book">
 					  </div>
 					</div>
+				</div>
+			  </div>
 				</td>
 				</tr>
 				</table>
