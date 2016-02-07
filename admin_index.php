@@ -12,6 +12,7 @@
 		$staff_row = mysql_fetch_assoc($staff_result); 
 		
 	}
+	
 ?>
 <html lang="en">
 
@@ -60,7 +61,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">MMU Accommodation Managament Admin System</a>
+                <a class="navbar-brand" href="admin_index.html">MMU Accommodation Managament Admin System</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -82,11 +83,11 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="admin_index.php"><i class="fa fa-fw fa-dashboard"></i> View Hall and Room Status</a>
+                        <a href="admin_pending.php"><i class="fa fa-fw fa-dashboard"></i> Pending Room</a>
                     </li>
                    
                     <li class="active">
-                        <a href="admin_tables.html"><i class="fa fa-fw fa-table"></i> Pending Room </a>
+                        <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> View Hall and Room Status</a>
                     </li>
                     
                     
@@ -109,27 +110,90 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Please select a hall:
+                               
+									<label for="sel1">Please select a hall:  </label>
+													
                             </li>
 							 <li class="active">
-                                <i class="fa fa-dashboard"></i> 
+									<div class="form-group">
+									<form action="" method="post" >
+									<select class="form-control" id="sel1" name="selecthall">
+											<option value="0" selected></option>;
+									<?php
+										$hall_result = mysql_query("select * from hall");
+										while ($hall_row = mysql_fetch_array($hall_result)) 
+										{
+												$hall_id = $hall_row['hall_id'];
+												$hall_name = $hall_row['hall_name'];
+											
+												echo "<option value='$hall_id' class='alert alert-success'>$hall_name</option>";
+										}
+										
+									?>
+									</select>
+										
+									</div>
+									
+                            </li>
+							<li class="active" style="margin-left:50px;">
+                               <p>
+										<?php 
+											if (isset($_POST['subbtn'])) 
+											{	
+												if($_POST['selecthall']=="0")
+												{
+														echo "<br>";
+												}
+												else
+												{
+												$selecthall = $_POST['selecthall'];
+												$displayname = mysql_query("select hall_name from hall where hall_id = '$selecthall'");
+												$displaynamerow = mysql_fetch_assoc($displayname); 
+												$hall_name1 = $displaynamerow['hall_name'];
+
+												echo "<p>You are selecting <strong>$hall_name1</strong>.</p>";
+												}
+												
+											}
+											else
+											{
+												echo "<p>You are not select hall yet.</p>";
+											}
+											
+									
+										?>
+							   </p>			
+                            </li>
+							<li class="active" style="float:right;">
+                               <input class="btn btn-lg btn-success btn-block" type="submit" value="Submit" name="subbtn">				
                             </li>
                         </ol>
                     </div>
                 </div>
                 <!-- /.row -->
-
-                <div class="alert alert-success">
-                    <strong>Well done!</strong> You successfully read this important alert message.
-                </div>
+			
                 <div class="alert alert-info">
-                    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-                </div>
-                <div class="alert alert-warning">
-                    <strong>Warning!</strong> Best check yo self, you're not looking too good.
-                </div>
-                <div class="alert alert-danger">
-                    <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                    <strong>Hall Detail: </strong> 
+					<?php 
+						if (isset($_POST['subbtn'])) 
+						{
+							if($_POST['selecthall']=="0")
+							{
+									echo "<p>Please select a hall to continue.</p>";
+							}
+							else
+							{
+							$selecthall = $_POST['selecthall'];
+							$hall_detail = mysql_query("select * from hall where hall_id = '$selecthall'");
+							$hall_detailrow = mysql_fetch_assoc($hall_detail); 
+							$hall_name2 = $hall_detailrow['hall_name'];
+							$hall_address = $hall_detailrow['hall_address'];
+							$hall_hp = $hall_detailrow['hall_hp'];
+							$hall_manager = $hall_detailrow['hall_manager'];
+							echo "<div class='alert alert-success'><strong>$hall_name2</strong> <strong style='margin-left:50px;'>Address: </strong>$hall_address 
+																	<strong style='margin-left:50px;'>H/P: </strong>$hall_hp <strong style='margin-left:50px;'>Manager: </strong>$hall_manager</div>";
+							
+					?>
                 </div>
 
                 <div class="row">
@@ -137,126 +201,59 @@
                     <div class="col-lg-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Tasks Panel</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="list-group">
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">just now</span>
-                                        <i class="fa fa-fw fa-calendar"></i> Calendar updated
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">4 minutes ago</span>
-                                        <i class="fa fa-fw fa-comment"></i> Commented on a post
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">23 minutes ago</span>
-                                        <i class="fa fa-fw fa-truck"></i> Order 392 shipped
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">46 minutes ago</span>
-                                        <i class="fa fa-fw fa-money"></i> Invoice 653 has been paid
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">1 hour ago</span>
-                                        <i class="fa fa-fw fa-user"></i> A new user has been added
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">2 hours ago</span>
-                                        <i class="fa fa-fw fa-check"></i> Completed task: "pick up dry cleaning"
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">yesterday</span>
-                                        <i class="fa fa-fw fa-globe"></i> Saved the world
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">two days ago</span>
-                                        <i class="fa fa-fw fa-check"></i> Completed task: "fix error on sales page"
-                                    </a>
-                                </div>
-                                <div class="text-right">
-                                    <a href="#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Transactions Panel</h3>
+                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>Room detail of <strong><?php echo "$hall_name2"?></strong></h3>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-hover table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Order #</th>
-                                                <th>Order Date</th>
-                                                <th>Order Time</th>
-                                                <th>Amount (USD)</th>
+                                                <th>Place ID</th>
+                                                <th>Room Number</th>
+                                                <th>Room Rent</th>
+                                                <th>Room Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>3326</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:29 PM</td>
-                                                <td>$321.33</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3325</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:20 PM</td>
-                                                <td>$234.34</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3324</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:03 PM</td>
-                                                <td>$724.17</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3323</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:00 PM</td>
-                                                <td>$23.71</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3322</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:49 PM</td>
-                                                <td>$8345.23</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3321</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:23 PM</td>
-                                                <td>$245.12</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3320</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:15 PM</td>
-                                                <td>$5663.54</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3319</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:13 PM</td>
-                                                <td>$943.45</td>
-                                            </tr>
+											<?php
+												$room_detail = mysql_query("select * from hall,room where hall.hall_id = '$selecthall' and room.hall_id='$selecthall'");
+												
+												while ($room_row = mysql_fetch_array($room_detail)) 
+												{		
+														$place_id = $room_row['place_id'];
+														$room_num = $room_row['room_num'];
+														$room_rent = $room_row['room_rent'];
+														$room_status = $room_row['room_status'];
+														echo "	<tr>
+																	<td>$place_id</td>
+																	<td>$room_num</td>
+																	<td>$room_rent</td>
+																	<td>$room_status</td>
+																</tr>";
+												}
+											
+											
+											?>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="text-right">
-                                    <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
+                         
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- /.row -->
-
+			<?php
+			}			
+						
+						}
+						else
+						{
+							echo "<br>";
+						}
+						
+			?>	
             </div>
             <!-- /.container-fluid -->
 
@@ -264,19 +261,8 @@
         <!-- /#page-wrapper -->
 
     </div>
-    <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
-
+	</form>
 </body>
 
 </html>
