@@ -2,7 +2,6 @@
 <?php
 	include("connection.php");
 	session_start();
-	ob_start();
 	
 	if (isset($_SESSION['id']))
 	{
@@ -40,7 +39,23 @@
 
 <style>
 
+.breadcrumb {
+  padding: 8px 0px;
+  margin-bottom: 20px;
+  margin-left:15px;
+  margin-right:15px;
+  list-style: none;
+  background-color: transparent;
 
+}
+
+.btn-info {
+	border-color:white;
+}
+
+.btn-info:hover {
+	border-color:#ABB7B7;
+}
 </style>
 
 </head>
@@ -64,14 +79,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float:right;margin-right:10px;">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="rent.php">View Available Room</a>
+                    <li class="active">
+                        <a href="rent.php"><strong>View Available Room</strong></a>
                     </li>
                     <li>
                         <a href="checkstatus.php">Check Booking Status</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a href="about.php">About</a>
                     </li>
                     <li>
                         <a href="#" style="color:skyblue;"><?php echo $student_row["student_name"] ?></a>
@@ -89,7 +104,7 @@
     </nav>
   
 			<div class="container">
-			  <div class="jumbotron" style="height:180px; margin-top:70px;">
+			  <div class="jumbotron" style="height:180px; margin-top:70px;margin-right:20px;">
 				<img src="img/mmulogo.png" alt="MMU" style="width: 300px;height:100px;">
 				<table style="float:right;">
 				<tr><td><h3 style="float:right;">MMU Accommodation Managament System</h3></td></tr>
@@ -97,13 +112,21 @@
 				</table>
 			  </div>
 			  <div class="row">
+			  <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i>  <a href="index.html">Home</a>
+                            </li>
+                            <li class="active">
+                                <i></i> View Available Room
+                            </li>
+                        </ol>
 				<div class="col-sm-4">
 				  
-				 <h3 style="color:skyblue;font-weight:bold;text-align:center;">Rent a Room</h3>
+				 <h3 style="color:#019875;font-weight:bold;text-align:center;">Rent a Room</h3>
 				
 				<table class="table table-bordered" style="text-align:center;margin-top:30px;">
-					<tr><td colspan="2" style="color:skyblue;"><?php echo $student_row["student_name"]; ?>
-						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
+					<tr><td colspan="2" style="background-color:#019875;color:white;font-size:20pt;font-family:serif";"><?php echo $student_row["student_name"]; ?>
+ 						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="background-color:#019875;float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
 						<!-- Modal -->
 						<div id="myModal" class="modal fade" role="dialog">
 						  <div class="modal-dialog">
@@ -147,8 +170,8 @@
 					<tr><td>Course</td><td><?php echo $student_row["course_title"] ?></td></tr>
 					<tr><td>Rent Status</td><td><?php echo $student_row["student_status"]; ?></td></tr>
 					<tr><td colspan="2" style="font-weight:bold;">Next-of-Kin</td></tr>
-					<tr><td colspan="2" style="color:skyblue;"><?php echo $student_row["relative_name"]; ?>
-						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
+					<tr><td colspan="2" style="background-color:#019875;color:white;font-size:20pt;font-family:serif;";"><?php echo $student_row["relative_name"]; ?>
+						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="background-color:#019875;float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
 						<!-- Modal -->
 						<div id="myModal" class="modal fade" role="dialog">
 						  <div class="modal-dialog">
@@ -197,11 +220,11 @@
 				
 				
 				<div class="col-sm-4">
-				<h3>Please select a Hall</h3>
+				<h3><b>Please select a Hall</b></h3>
 				<form method="POST" action="room.php">
-				<table style="width:700px;">
+				<table style="width:730px;">
 				<tr>
-				<td><div class="panel panel-info" style="padding:5px;margin:5px;height:130px;">
+				<td><div class="panel panel-info" style="padding:5px;margin-top:20px;height:170px;">
 					  <div class="panel-heading">
 												Hall name : 
 												<select name="hall">
@@ -215,6 +238,9 @@
 												?>
 												</select></div>		
 					  <div class="panel-body">
+						<div>1. Choose your Hall </div>
+						<div style="padding-bottom:5px;">2. Click "Select"</div>	
+						
 						<input class="btn btn-lg btn-warning btn-block" type="submit" name="btn_hall" value="Select">
 					  </div>
 					</div>
