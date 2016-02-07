@@ -88,6 +88,73 @@ body
 			    		</div>
 			    		<h6>Password is case sensitive</h6>
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" name="submit" value="Login">
+						<?php
+
+							if(isset($_POST['submit']))
+							{	$id=$_POST['id'];
+								$pass=$_POST['password'];
+								
+								$check_student = mysql_query("select student_pass from student where student_id ='$id'");
+								$check_staff = mysql_query("select staff_pass from staff where staff ='$id'");
+								
+								if(empty($_POST['id']) || empty($_POST['password']))
+								{
+							?>
+									<div class="alert alert-danger">
+												<strong>ERROR!</strong> Please fill in ID and Password!
+											</div>
+							<?php
+								}
+								else if($check_student != $pass)
+								{
+									?>
+										<div class="alert alert-warning">
+											<strong>Warning!</strong> ID or Password does not match!
+											</div>
+										<?php
+								}
+								else if($check_staff != $pass)
+								{
+									?> 
+										<div class="alert alert-warning">
+											<strong>Warning!</strong> ID or Password does not match!
+										</div>
+									<?php
+								}
+								if(0<mysql_num_rows(mysql_query("select * from student where student_id='$id' AND student_pass='$pass'")))
+								{
+									
+									$query=mysql_query("select * from student where student_id='$id' AND student_pass='$pass'");
+									
+									
+									$rows = mysql_num_rows($query);
+									
+									if ($rows == 1) 
+									{
+										$_SESSION['id']=$id; // Initializing Session
+										header("location: index.php"); // Redirecting To Other Page	
+									}
+									
+								}
+
+								else if(0<mysql_num_rows(mysql_query("select * from staff where staff_id='$id' AND staff_pass='$pass'")))
+								{
+									$adminquery=mysql_query("select * from staff where staff_id='$id' AND staff_pass='$pass'");
+									
+									$adminrows = mysql_num_rows($adminquery);
+									
+								if ($adminrows == 1) 
+								{
+									$_SESSION['id']=$id; // Initializing Session
+									header("location: admin_index.php"); // Redirecting To Other Page
+								}
+		
+	
+								}
+							}
+							
+
+?>
 			    	</fieldset>
 			      	</form>
 			    </div>
@@ -99,56 +166,5 @@ body
 
 </html>
 
-<?php
 
-if(isset($_POST['submit']))
-{	$id=$_POST['id'];
-	$pass=$_POST['password'];
-	
-	if(empty($_POST['id']) || empty($_POST['password']))
-    {
-?>
-		<script>alert("The username or password is empty!");</script>
-<?php
-    }
-	else if(0<mysql_num_rows(mysql_query("select * from student where student_id='$id' AND student_pass='$pass'")))
-	{
-		
-		$query=mysql_query("select * from student where student_id='$id' AND student_pass='$pass'");
-		
-		$rows = mysql_num_rows($query);
-		
-		if ($rows == 1) 
-		{
-			$_SESSION['id']=$id; // Initializing Session
-			header("location: index.php"); // Redirecting To Other Page
-		}
-		else 
-		{
-?>
-		<script>alert("Username or Password is invalid!");</script>
-<?php
-		}
-	}
-	else if(0<mysql_num_rows(mysql_query("select * from staff where staff_id='$id' AND staff_pass='$pass'")))
-	{
-		$adminquery=mysql_query("select * from staff where staff_id='$id' AND staff_pass='$pass'");
-		
-		$adminrows = mysql_num_rows($adminquery);
-		
-		if ($adminrows == 1) 
-		{
-			$_SESSION['id']=$id; // Initializing Session
-			header("location: admin_index.php"); // Redirecting To Other Page
-		}
-		else 
-		{
-?>
-		<script>alert("Username or Password is invalid!");</script>
-<?php
-		}
-	
-	}
-}
-?>
 
