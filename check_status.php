@@ -11,7 +11,6 @@
 		$student_result = mysql_query("select * from student,course,relative where student.student_id=$sess_id and student.course_id=course.course_id and relative.student_id=$sess_id");
 		$student_row = mysql_fetch_assoc($student_result); 	
 	}
-	$hall_result = mysql_query("select * from hall");
 ?>
 <html>
 <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
@@ -77,9 +76,6 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="rent.php">View Available Room</a>
-                    </li>
-                    <li class="active">
-                        <a href="checkstatus.php">Check Booking Status</a>
                     </li>
                     <li>
                         <a href="about.php"><strong>About</strong></a>
@@ -213,7 +209,18 @@
 				
 				
 				<div class="col-sm-7" style="margin-top:5px;">
-					
+				<?php
+					if($student_row['student_status']=='pending')
+					{
+						$detail_result = mysql_query("select * from waiting,hall,room where waiting.student_id='$sess_id' and room.place_id=waiting.place_id and hall.hall_id=room.hall_id");
+						$detail_row = mysql_fetch_assoc($detail_result);
+					}
+					else if($student_row['student_status']=='rented')
+					{
+						$detail_result = mysql_query("select * from agreement,hall,room where agreement.student_id='$sess_id' and room.place_id=agreement.place_id and hall.hall_id=room.hall_id");
+						$detail_row = mysql_fetch_assoc($detail_result);
+					}
+				?>
 					
 						
 						
@@ -234,24 +241,13 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        
-										<td>Hall A</td>
-										<td>Frank Lampard</td>
-										<td>15</td>
-                                        <td>1st sem</td>
-                                        <td>2nd sem</td>
-										<td>pending</td>
-                                    </tr>
-                                    <tr>
-                                        
-										<td>Hall B</td>
-										<td>John Terry</td>
-										<td>30</td>
-                                        <td>1st sem</td>
-                                        <td>3rd sem</td>
-										<td>Approved</td>
-                                    </tr>
-                                   
+										<td><?php echo $detail_row['hall_name']; ?></td>
+										<td><?php echo $detail_row['hall_manager']; ?></td>
+										<td><?php echo $detail_row['room_num']; ?></td>
+                                        <td><?php echo $detail_row['wait_start']; ?></td>
+                                        <td><?php echo $detail_row['wait_end']; ?></td>
+										<td><?php echo $detail_row['room_status']; ?></td>
+                                    </tr>                      
                                 </tbody>
                             </table>
                         
