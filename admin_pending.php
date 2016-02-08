@@ -1,5 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<?php
+	include("connection.php");
+	session_start();
+	
+	if (isset($_SESSION['id']))
+	{
+		 
+		$sess_id=$_SESSION["id"];
+		
+		$staff_result = mysql_query("select * from staff where staff_id=$sess_id");
+		$staff_row = mysql_fetch_assoc($staff_result); 
+		
+	}
+	
+?>
+<html>
 
 <head>
 
@@ -9,17 +24,42 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
-
+    <title>MMU Accommodation Managament Admin System</title>	
     <!-- Bootstrap Core CSS -->
+	
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
 
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+	
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- css for awesome font -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	
+    <!-- Custom styles for this template -->
+    
+	
+	 <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
+	 <script src="jquery.js"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	 
+
+
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -47,31 +87,29 @@
                 <a class="navbar-brand" href="admin_index.html">MMU Accommodation Managament Admin System</a>
             </div>
             <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                
-                
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><?php echo $staff_row["staff_name"] ?><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        
-                            
-                        <li class="divider"></li>
-                        <li>
-                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float:right;margin-right:10px;">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#"><i class="fa fa-user"></i><?php echo $staff_row["staff_name"] ?></a>
+                    </li>
+					<li>
+                        <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    </li>
+					
+                </ul>
+				
+            </div>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li>
+					<li >
+                        <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> View Hall and Room Status</a>
+                    </li>
+                    <li class="active">
                         <a href="admin_pending.php"><i class="fa fa-fw fa-dashboard"></i> Pending Room</a>
                     </li>
                    
-                    <li class="active">
-                        <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> View Hall and Room Status</a>
-                    </li>
+                    
                     
                     
                     
