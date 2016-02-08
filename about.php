@@ -2,6 +2,7 @@
 <?php
 	include("connection.php");
 	session_start();
+	ob_start();
 	
 	if (isset($_SESSION['id']))
 	{
@@ -9,9 +10,9 @@
 		$sess_id=$_SESSION["id"];
 		
 		$student_result = mysql_query("select * from student,course,relative where student.student_id=$sess_id and student.course_id=course.course_id and relative.student_id=$sess_id");
-		$student_row = mysql_fetch_assoc($student_result); 	
+		$student_row = mysql_fetch_assoc($student_result); 
+		
 	}
-	$hall_result = mysql_query("select * from hall");
 ?>
 <html>
 <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
@@ -35,10 +36,14 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	 <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
 	 <script src="jquery.js"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	 
+
+
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
-
+	
 <style>
-
 .breadcrumb {
   padding: 8px 0px;
   margin-bottom: 20px;
@@ -49,13 +54,6 @@
 
 }
 
-.btn-info {
-	border-color:white;
-}
-
-.btn-info:hover {
-	border-color:#ABB7B7;
-}
 </style>
 
 </head>
@@ -83,13 +81,13 @@
                         <a href="rent.php">View Available Room</a>
                     </li>
                     <li>
-                        <a href="checkstatus.php">Check Booking Status</a>
+                        <a href="check_status.php">Check Booking Status</a>
                     </li>
                     <li class="active">
                         <a href="about.php"><strong>About</strong></a>
                     </li>
                     <li>
-                        <a href="#" style="color:skyblue;"><?php echo $student_row["student_name"] ?></a>
+                        <a href="#" style="color:skyblue;cursor:context-menu;"><?php echo $student_row["student_name"] ?></a>
                     </li>
 					<li>
                         <a href="logout.php">Logout</a>
@@ -114,7 +112,7 @@
 			  <div class="row">
 			  <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-home"></i>  <a href="index.html">Home</a>
+                                <i class="fa fa-home"></i>  <a href="index.php">Home</a>
                             </li>
                             <li class="active">
                                 <i></i> About
@@ -125,20 +123,21 @@
 				 
 				
 				<table class="table table-bordered" style="text-align:center;margin-top:30px;">
-					<tr><td colspan="2" style="background-color:#019875;color:white;font-size:20pt;font-family:serif";"><?php echo $student_row["student_name"]; ?>
- 						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="background-color:#019875;float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
+					<tr><td colspan="2" style="background-color:#337ab7;color:white;font-size:15pt;font-family:serif;"><?php echo $student_row["student_name"]; ?>
+						<button type="button" title="Update student profile" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg" style="color:white;"></i>
+                            </button>
 						<!-- Modal -->
 						<div id="myModal" class="modal fade" role="dialog">
 						  <div class="modal-dialog">
 
 							<!-- Modal content-->
-							<div class="modal-content">
+							<div class="modal-content" style="color:black;font-family:serif;font-size:12pt;">
 							  <div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<h4 class="modal-title">Update Profile</h4>
 							  </div>
 							  <div class="modal-body">
-								<table class="table table-hover" >
+								<table class="table table-hover">
 									<tbody>
 										<tr>
 											<td><b>Contact Number: </b></td>
@@ -170,9 +169,10 @@
 					<tr><td>Course</td><td><?php echo $student_row["course_title"] ?></td></tr>
 					<tr><td>Rent Status</td><td><?php echo $student_row["student_status"]; ?></td></tr>
 					<tr><td colspan="2" style="font-weight:bold;">Next-of-Kin</td></tr>
-					<tr><td colspan="2" style="background-color:#019875;color:white;font-size:20pt;font-family:serif;";"><?php echo $student_row["relative_name"]; ?>
-						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="background-color:#019875;float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
-						<!-- Modal -->
+					<tr><td colspan="2" style="background-color:#337ab7;color:white;font-size:15pt;font-family:serif;"><?php echo $student_row["relative_name"]; ?>
+						<button type="button" title="Update next-of-kin profile" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg" style="color:white;"></i>
+                           </button>					
+						   <!-- Modal -->
 						<div id="myModal" class="modal fade" role="dialog">
 						  <div class="modal-dialog">
 
