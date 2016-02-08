@@ -219,7 +219,7 @@
 
                 <div class="row">
                     
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>Room detail of <strong><?php echo "$hall_name2"?></strong></h3>
@@ -245,12 +245,21 @@
 														$room_num = $room_row['room_num'];
 														$room_rent = $room_row['room_rent'];
 														$room_status = $room_row['room_status'];
-														echo "	<tr>
-																	<td>$place_id</td>
-																	<td>$room_num</td>
-																	<td>$room_rent</td>
-																	<td>$room_status</td>
-																</tr>";
+														?>
+															<tr>
+																	<td><?php echo $place_id ?></td>
+																	<td><?php echo $room_num ?></td>
+																	<td><?php echo $room_rent ?></td>
+																	<td><?php 
+																		if ($room_status=='Pending') 
+																		{echo "<span style='color:orange'>$room_status</span>"; }
+																		else if ($room_status=='Rented')
+																		{echo "<span style='color:skyblue'>$room_status</span>"; }
+																		else
+																		{echo "<span>$room_status</span>"; }
+																	?></td>
+															</tr>
+														<?php
 												}
 											
 											
