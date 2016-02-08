@@ -68,9 +68,6 @@
                         <a href="rent.php">View Available Room</a>
                     </li>
                     <li>
-                        <a href="checkstatus.php">Check Booking Status</a>
-                    </li>
-                    <li>
                         <a href="#">About</a>
                     </li>
                     <li>
