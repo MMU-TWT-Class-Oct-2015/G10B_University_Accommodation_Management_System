@@ -88,9 +88,6 @@
                         <a href="rent.php">View Available Room</a>
                     </li>
                     <li>
-                        <a href="check_status.php">Check Booking Status</a>
-                    </li>
-                    <li>
                         <a href="about.php">About</a>
                     </li>
                     <li>
@@ -101,7 +98,20 @@
                     </li>
 					
                 </ul>
-				
+				<?php
+					if(isset($_POST['chk_status']))
+					{
+						if($student_row['student_status']=='none')
+						{
+				?>			<script>alert('You have no book any room')</script>
+				<?php
+						}
+						else if($student_row['student_status']=='pending' || $student_row['student_status']=='rented')
+						{
+							header('location: check_status.php');
+						}
+					}
+				?>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -124,8 +134,9 @@
                             
                 </ol>
 				<div class="col-sm-4">
-				  
-				  <input class="btn btn-lg btn-success btn-block" type="button" onclick="window.location='check_status.php'" value="Check Booking Status">
+				  <form method='POST'>
+				  <input class="btn btn-lg btn-success btn-block" type="submit" value="Check Booking Status" name='chk_status'>
+				  </form>
 				<table class="table table-bordered" style="text-align:center;margin-top:30px;">
 					<tr><td colspan="2" style="background-color:#337ab7;color:white;font-size:15pt;font-family:serif;"><?php echo $student_row["student_name"]; ?>
 						<button type="button" title="Update student profile" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg" style="color:white;"></i>
