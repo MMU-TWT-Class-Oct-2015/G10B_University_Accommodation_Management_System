@@ -172,7 +172,15 @@
 					<tr><td>Address</td><td><?php echo $student_row["student_address"]; ?></td></tr>
 					<tr><td>Date of Birth</td><td><?php echo $student_row["student_dob"]; ?></td></tr>
 					<tr><td>Course</td><td><?php echo $student_row["course_title"] ?></td></tr>
-					<tr><td>Rent Status</td><td><?php echo $student_row["student_status"]; ?></td></tr>
+					<tr><td>Rent Status</td><td><?php  $sst=$student_row["student_status"]; 
+																		if ($sst=='Pending') 
+																		{echo "<span style='color:orange'>$sst</span>"; }
+																		else if ($sst=='Rented')
+																		{echo "<span style='color:skyblue'>$sst</span>"; }
+																		else
+																		{echo "<span>$sst</span>"; }
+											?></td>
+					</tr>
 					<tr><td colspan="2" style="font-weight:bold;">Next-of-Kin</td></tr>
 					<tr><td colspan="2" style="background-color:#337ab7;color:white;font-size:15pt;font-family:serif;"><?php echo $student_row["relative_name"]; ?>
 						<button type="button" title="Update next-of-kin profile" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg" style="color:white;"></i>
