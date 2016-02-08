@@ -45,6 +45,21 @@
 	
 <style>
 
+.breadcrumb {
+  padding: 8px 0px;
+  margin-bottom: 20px;
+  margin-left:15px;
+  margin-right:15px;
+  list-style: none;
+  background-color: transparent;
+
+}
+
+
+
+
+
+
 
 </style>
 
@@ -73,13 +88,13 @@
                         <a href="rent.php">View Available Room</a>
                     </li>
                     <li>
-                        <a href="checkstatus.php">Check Booking Status</a>
+                        <a href="check_status.php">Check Booking Status</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a href="about.php">About</a>
                     </li>
                     <li>
-                        <a href="#" style="color:skyblue;"><?php echo $student_row["student_name"] ?></a>
+                        <a href="#" style="color:skyblue;cursor:context-menu;"><?php echo $student_row["student_name"] ?></a>
                     </li>
 					<li>
                         <a href="logout.php">Logout</a>
@@ -102,24 +117,32 @@
 				</table>
 			  </div>
 			  <div class="row">
+				<ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-home"></i> Home
+                            </li>
+                            
+                </ol>
 				<div class="col-sm-4">
 				  
-				  <input class="btn btn-lg btn-success btn-block" type="button" onclick="window.location='checkstatus.php'" value="Check Booking Status">
+				  <input class="btn btn-lg btn-success btn-block" type="button" onclick="window.location='check_status.php'" value="Check Booking Status">
 				<table class="table table-bordered" style="text-align:center;margin-top:30px;">
-					<tr><td colspan="2" style="color:skyblue;"><?php echo $student_row["student_name"]; ?>
-						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
+					<tr><td colspan="2" style="background-color:#337ab7;color:white;font-size:15pt;font-family:serif;"><?php echo $student_row["student_name"]; ?>
+						<button type="button" title="Update student profile" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg" style="color:white;"></i>
+                            </button>
 						<!-- Modal -->
+						
 						<div id="myModal" class="modal fade" role="dialog">
 						  <div class="modal-dialog">
 
 							<!-- Modal content-->
-							<div class="modal-content">
+							<div class="modal-content" style="color:black;font-family:serif;font-size:12pt;">
 							  <div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<h4 class="modal-title">Update Profile</h4>
 							  </div>
 							  <div class="modal-body">
-								<table class="table table-hover" >
+								<table class="table table-hover">
 									<tbody>
 										<tr>
 											<td><b>Contact Number: </b></td>
@@ -151,9 +174,10 @@
 					<tr><td>Course</td><td><?php echo $student_row["course_title"] ?></td></tr>
 					<tr><td>Rent Status</td><td><?php echo $student_row["student_status"]; ?></td></tr>
 					<tr><td colspan="2" style="font-weight:bold;">Next-of-Kin</td></tr>
-					<tr><td colspan="2" style="color:skyblue;"><?php echo $student_row["relative_name"]; ?>
-						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
-						<!-- Modal -->
+					<tr><td colspan="2" style="background-color:#337ab7;color:white;font-size:15pt;font-family:serif;"><?php echo $student_row["relative_name"]; ?>
+						<button type="button" title="Update next-of-kin profile" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg" style="color:white;"></i>
+                           </button>					
+						   <!-- Modal -->
 						<div id="myModal" class="modal fade" role="dialog">
 						  <div class="modal-dialog">
 
