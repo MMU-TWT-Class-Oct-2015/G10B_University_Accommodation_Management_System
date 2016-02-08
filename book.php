@@ -248,8 +248,8 @@
 										$semend = "16/17 Semester 3";
 								
 									mysql_query("insert into waiting (place_id,student_id,wait_start,wait_end) values ('$roomid','$studentid','$semstart','$semend')");
-									mysql_query("update student set student_status='pending' where student_id='$sess_id'");
-									mysql_query("update room set room_status='pending' where place_id='$roomid'");
+									mysql_query("update student set student_status='Pending' where student_id='$sess_id'");
+									mysql_query("update room set room_status='Pending' where place_id='$roomid'");
 									?>
 										<script>
 											alert("Wait for admin to approve your statement.");

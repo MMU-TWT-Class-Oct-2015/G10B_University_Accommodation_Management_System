@@ -12,7 +12,18 @@
 		$staff_row = mysql_fetch_assoc($staff_result); 
 		
 	}
-	
+	if(isset($_POST["upstatusbtn"]))
+			{
+						$newstatus="Rented";
+						$wid=$_POST["waiting_id"];
+						$pid=$_POST["place_id"];
+						$student_id=$_POST["student_id"];
+						$wait_start=$_POST["wait_start"];
+						$wait_end=$_POST["wait_end"];
+						mysql_query("insert into agreement (place_id, student_id, date_start, date_end) values ('$pid', '$student_id', '$wait_start', '$wait_end')");
+						mysql_query("update room set room_status = '$newstatus' where place_id = '$pid'");
+						mysql_query("update student set student_status = '$newstatus' where student_id = '$student_id'");
+			}
 ?>
 <html>
 
@@ -84,7 +95,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="admin_index.html">MMU Accommodation Managament Admin System</a>
+                <a class="navbar-brand" href="admin_index.php">MMU Accommodation Managament Admin System</a>
             </div>
             <!-- Top Menu Items -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float:right;margin-right:10px;">
@@ -127,158 +138,92 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Tables
+                            Pending Room
                         </h1>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-table"></i> Tables
-                            </li>
-                        </ol>
+                        
                     </div>
                 </div>
                 <!-- /.row -->
 				
-				<div class="alert alert-success">
-                    <strong>Well done!</strong> You successfully read this important alert message.
-                </div>
                 <div class="alert alert-info">
-                    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+                    <strong>Below the list are showing the room still pending from student request. Please update room status.</strong> 
                 </div>
-                <div class="alert alert-warning">
-                    <strong>Warning!</strong> Best check yo self, you're not looking too good.
-                </div>
-                <div class="alert alert-danger">
-                    <strong>Oh snap!</strong> Change a few things up and try submitting again.
-                </div>
+                
 				
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2>Bordered Table</h2>
+                        <h2>Pending Room List</h2>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Page</th>
-                                        <th>Visits</th>
-                                        <th>% New Visits</th>
-                                        <th>Revenue</th>
+                                        <th>ID</th>
+                                        <th>Place ID</th>
+                                        <th>Student ID</th>
+										<th>Student Name</th>
+										<th>Student H/P</th>
+                                        <th>Start Date</th>
+										<th>Terminate Date</th>
+										<th style="width:180px;">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-                                        <td>$234.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-                                        <td>$16.34</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-                                        <td>$1644.43</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-                                        <td>$23.52</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                                        <td>$724.32</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                        <td>$126.34</td>
-                                    </tr>
+								<?php 
+										$room_result = mysql_query("select * from waiting,room,student where waiting.place_id=room.place_id and waiting.student_id=student.student_id and room.room_status='Pending'");
+										if(mysql_num_rows($room_result)== 0)
+										{
+								?>
+											<tr><td colspan="8" style="text-align:center;">Pending List is Empty.</td></tr>
+								<?php
+										}
+										else
+										{
+										while ($room_row = mysql_fetch_array($room_result)) 
+													{
+														$waiting_id = $room_row['waiting_id'];
+														$place_id = $room_row['place_id'];
+														$student_id = $room_row['student_id'];
+														$student_name = $room_row['student_name'];
+														$student_hp = $room_row['student_hp'];
+														$wait_start = $room_row['wait_start'];
+														$wait_end = $room_row['wait_end'];
+														$room_status = $room_row['room_status'];
+														?>
+															<tr>
+																	<td><?php echo $waiting_id ?></td>
+																	<td><?php echo $place_id ?></td>
+																	<td><?php echo $student_id ?></td>
+																	<td><?php echo $student_name ?></td>
+																	<td><?php echo $student_hp ?></td>
+																	<td><?php echo $wait_start ?></td>
+																	<td><?php echo $wait_end ?></td>
+																	<td><?php echo "<span style='color:orange'>$room_status</span>" ?>
+																		<form name="statusfrm" method="POST">
+																		<input type="hidden" name="waiting_id" value="<?php echo $waiting_id; ?>">
+																		<input type="hidden" name="place_id" value="<?php echo $place_id; ?>">
+																		<input type="hidden" name="student_id" value="<?php echo $student_id; ?>">
+																		<input type="hidden" name="wait_start" value="<?php echo $wait_start; ?>">
+																		<input type="hidden" name="wait_end" value="<?php echo $wait_end; ?>">
+																
+																		<button type="submit" title="Update Status" class="btn btn-default btn-primary" style="float:right;" name="upstatusbtn"><i class="glyphicon glyphicon-circle-arrow-up" style="color:white;"></i>
+																		</button>
+																		</form>
+																	</td>
+																
+															</tr>
+														<?php
+													}
+										}
+								
+								?>
+                                    
                                 </tbody>
                             </table>
                         </div>
                     </div>
                    
                 </div>
-                <!-- /.row -->  
-				<div class="row">
-                    <div class="col-lg-12">
-                        <h2>Bordered Table</h2>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Page</th>
-                                        <th>Visits</th>
-                                        <th>% New Visits</th>
-                                        <th>Revenue</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-                                        <td>$234.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-                                        <td>$16.34</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-                                        <td>$1644.43</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-                                        <td>$23.52</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                                        <td>$724.32</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                        <td>$126.34</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                   
-                </div>
+               
             </div>
             <!-- /.container-fluid -->
 			
