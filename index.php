@@ -153,32 +153,78 @@
 								<h4 class="modal-title">Update Profile</h4>
 							  </div>
 							  <div class="modal-body">
+							  <form method="POST">
 								<table class="table table-hover">
 									<tbody>
 										<tr>
 											<td><b>Contact Number: </b></td>
-											<td> <input type="text" name="relative_hp">
+											<td> <input type="text" name="newstudent_hp" maxlength="11">
 											</td>
 										</tr>
 										<tr>
 											<td><b>Address:</b> </td>
-											<td> <input type="text" name="relative_address"></td>
+											<td> <input type="text" name="newstudent_address" maxlength="50"></td>
 											
 										</tr>   
 										
 									</tbody>
-								  </table>    
+								  </table>
+								
 							  </div>
 							  <div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal">Save and Exit</button>
+								<input type="submit" class="btn btn-primary" value="Save and Exit" name="edit_student">
 							  </div>
 							</div>
-
+							</form>
 						  </div>
 						</div></td>
+						<?php
+							if(isset($_POST['edit_student']))
+							{
+								$news_hp = $_POST['newstudent_hp'];
+								$news_add = $_POST['newstudent_address'];
+								
+								if(empty($news_hp) && empty($news_add))
+								{ ?>
+									<script>alert("No information has been saved!");</script>	
+								<?php
+								}
+								else if(empty($news_add))
+								{
+									if(is_numeric($news_hp) == true)
+									{
+										mysql_query("update student set student_hp='$news_hp' where student_id='$sess_id'");
+									}
+									else
+									{ ?>
+										<script>alert("Contact number must be numeric!");</script>
+									<?php			
+									}	
+									
+								}
+								else if(empty($news_hp))
+								{
+									mysql_query("update student set student_address='$news_add' where student_id='$sess_id'");
+								}
+								else
+								{ 
+									if(is_numeric($news_hp) == true)
+									{
+										mysql_query("update student set student_hp='$news_hp',student_address='$news_add' where student_id='$sess_id'");
+									}
+									else
+									{ ?>
+										<script>alert("Contact number must be numeric!");</script>
+									<?php			
+									}	
+								}
+							}
+						?>
+
 					</tr>
 					<tr><td>Matric Number</td><td><?php echo $student_row["student_id"]; ?></td></tr>
+					<tr><td>Contact Number</td><td><?php echo $student_row["student_hp"]; ?></td></tr>
 					<tr><td>Academic Status</td><td><?php echo $student_row["student_category"]; ?></td></tr>
 					<tr><td>Address</td><td><?php echo $student_row["student_address"]; ?></td></tr>
 					<tr><td>Date of Birth</td><td><?php echo $student_row["student_dob"]; ?></td></tr>
@@ -207,16 +253,17 @@
 								<h4 class="modal-title">Update Profile</h4>
 							  </div>
 							  <div class="modal-body">
+							   <form method="POST">
 								<table class="table table-hover" >
 									<tbody>
 										<tr>
 											<td><b>Contact Number: </b></td>
-											<td> <input type="text" name="relative_hp">
+											<td> <input type="text" name="newrelative_hp" maxlength="11">
 											</td>
 										</tr>
 										<tr>
 											<td><b>Address:</b> </td>
-											<td> <input type="text" name="relative_address"></td>
+											<td> <input type="text" name="newrelative_address" maxlength="50"></td>
 											
 										</tr>   
 										
@@ -225,13 +272,55 @@
 							  </div>
 							  <div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal">Save and Exit</button>
+								<input type="submit" class="btn btn-primary" value="Save and Exit" name="edit_relative">
 							  </div>
 							</div>
-
 						  </div>
-						</div>
-						</td>
+						  </form>
+						</div></td>
+						
+						<?php
+							if(isset($_POST['edit_relative']))
+							{
+								$newr_hp = $_POST['newrelative_hp'];
+								$newr_add = $_POST['newrelative_address'];
+								
+								if(empty($newr_hp) && empty($newr_add))
+								{ ?>
+									<script>alert("No information has been saved!");</script>	
+								<?php
+								}
+								else if(empty($newr_add))
+								{
+									if(is_numeric($newr_hp) == true)
+									{
+										mysql_query("update relative set relative_hp='$newr_hp' where student_id='$sess_id'");
+									}
+									else
+									{ ?>
+										<script>alert("Contact number must be numeric!");</script>
+									<?php			
+									}	
+									
+								}
+								else if(empty($newr_hp))
+								{
+									mysql_query("update relative set relative_address='$newr_add' where student_id='$sess_id'");
+								}
+								else
+								{ 
+									if(is_numeric($newr_hp) == true)
+									{
+										mysql_query("update relative set relative_hp='$newr_hp',relative_address='$newr_add' where student_id='$sess_id'");
+									}
+									else
+									{ ?>
+										<script>alert("Contact number must be numeric!");</script>
+									<?php			
+									}	
+								}
+							}
+						?>
 						
 					</tr>
 					<tr><td>Relationship</td><td><?php echo $student_row["relative_relation"]; ?></td></tr>
