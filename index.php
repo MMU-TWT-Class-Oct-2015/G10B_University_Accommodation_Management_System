@@ -139,11 +139,11 @@
 				  </form>
 				<table class="table table-bordered" style="text-align:center;margin-top:30px;">
 					<tr><td colspan="2" style="background-color:#337ab7;color:white;font-size:15pt;font-family:serif;"><?php echo $student_row["student_name"]; ?>
-						<button type="button" title="Update student profile" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg" style="color:white;"></i>
+						<button type="button" title="Update student profile" class="btn btn-default btn-primary" data-toggle="modal" data-target="#studentModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg" style="color:white;"></i>
                             </button>
 						<!-- Modal -->
 						
-						<div id="myModal" class="modal fade" role="dialog">
+						<div id="studentModal" class="modal fade" role="dialog">
 						  <div class="modal-dialog">
 
 							<!-- Modal content-->
@@ -174,6 +174,7 @@
 							  <div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 								<input type="submit" class="btn btn-primary" value="Save and Exit" name="edit_student">
+								
 							  </div>
 							</div>
 							</form>
@@ -187,18 +188,35 @@
 								
 								if(empty($news_hp) && empty($news_add))
 								{ ?>
-									<script>alert("No information has been saved!");</script>	
+									&nbsp;
+									<div class="alert alert-warning">
+												<i class="fa fa-exclamation-triangle"></i> No information has been saved!
+											</div>
 								<?php
+									
 								}
 								else if(empty($news_add))
 								{
 									if(is_numeric($news_hp) == true)
 									{
 										mysql_query("update student set student_hp='$news_hp' where student_id='$sess_id'");
+										header("Refresh:3");
+										?>
+										&nbsp;
+										<div class="alert alert-success">
+												<i class="fa fa-check-circle"></i> Information has been saved!
+											</div>
+											
+											<?php
+											
 									}
 									else
 									{ ?>
-										<script>alert("Contact number must be numeric!");</script>
+										&nbsp;
+										<div class="alert alert-warning">
+												<i class="fa fa-exclamation-triangle"></i> Contact number must be numeric!
+											</div>
+										
 									<?php			
 									}	
 									
@@ -206,16 +224,36 @@
 								else if(empty($news_hp))
 								{
 									mysql_query("update student set student_address='$news_add' where student_id='$sess_id'");
+									header("Refresh:3");
+									?>
+										&nbsp;
+										<div class="alert alert-success">
+												<i class="fa fa-check-circle"></i> Information has been saved!
+											</div>
+											<?php
 								}
+									
 								else
 								{ 
 									if(is_numeric($news_hp) == true)
 									{
 										mysql_query("update student set student_hp='$news_hp',student_address='$news_add' where student_id='$sess_id'");
+										header("Refresh:3");
+										?>
+										&nbsp;
+										<div class="alert alert-success">
+												<i class="fa fa-check-circle"></i> Information has been saved!
+											</div>
+											<?php
 									}
+										
 									else
 									{ ?>
-										<script>alert("Contact number must be numeric!");</script>
+										&nbsp;
+										<div class="alert alert-warning">
+												<i class="fa fa-exclamation-triangle"></i> Contact number must be numeric!
+											</div>
+										
 									<?php			
 									}	
 								}
@@ -240,14 +278,14 @@
 					</tr>
 					<tr><td colspan="2" style="font-weight:bold;">Next-of-Kin</td></tr>
 					<tr><td colspan="2" style="background-color:#337ab7;color:white;font-size:15pt;font-family:serif;"><?php echo $student_row["relative_name"]; ?>
-						<button type="button" title="Update next-of-kin profile" class="btn btn-default btn-primary" data-toggle="modal" data-target="#myModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg" style="color:white;"></i>
+						<button type="button" title="Update next-of-kin profile" class="btn btn-default btn-primary" data-toggle="modal" data-target="#relativeModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg" style="color:white;"></i>
                            </button>					
 						   <!-- Modal -->
-						<div id="myModal" class="modal fade" role="dialog">
+						<div id="relativeModal" class="modal fade" role="dialog">
 						  <div class="modal-dialog">
 
 							<!-- Modal content-->
-							<div class="modal-content">
+							<div class="modal-content" style="color:black;font-family:serif;font-size:12pt;">
 							  <div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<h4 class="modal-title">Update Profile</h4>
@@ -287,7 +325,10 @@
 								
 								if(empty($newr_hp) && empty($newr_add))
 								{ ?>
-									<script>alert("No information has been saved!");</script>	
+									&nbsp;
+									<div class="alert alert-warning">
+												<i class="fa fa-exclamation-triangle"></i> No information has been saved!
+											</div>	
 								<?php
 								}
 								else if(empty($newr_add))
@@ -295,10 +336,20 @@
 									if(is_numeric($newr_hp) == true)
 									{
 										mysql_query("update relative set relative_hp='$newr_hp' where student_id='$sess_id'");
+										header("Refresh:3");
+										?>
+										&nbsp;
+										<div class="alert alert-success">
+												<i class="fa fa-check-circle"></i> Information has been saved!
+											</div>
+											<?php
 									}
 									else
 									{ ?>
-										<script>alert("Contact number must be numeric!");</script>
+										&nbsp;
+										<div class="alert alert-warning">
+												<i class="fa fa-exclamation-triangle"></i> Contact number must be numeric!
+											</div>
 									<?php			
 									}	
 									
@@ -306,16 +357,33 @@
 								else if(empty($newr_hp))
 								{
 									mysql_query("update relative set relative_address='$newr_add' where student_id='$sess_id'");
+									header("Refresh:3");
+									?>
+										&nbsp;
+										<div class="alert alert-success">
+												<i class="fa fa-check-circle"></i> Information has been saved!
+											</div>
+											<?php
 								}
 								else
 								{ 
 									if(is_numeric($newr_hp) == true)
 									{
 										mysql_query("update relative set relative_hp='$newr_hp',relative_address='$newr_add' where student_id='$sess_id'");
+										header("Refresh:3");
+										?>
+										&nbsp;
+										<div class="alert alert-success">
+												<i class="fa fa-check-circle"></i> Information has been saved!
+											</div>
+											<?php
 									}
 									else
 									{ ?>
-										<script>alert("Contact number must be numeric!");</script>
+										&nbsp;
+										<div class="alert alert-warning">
+												<i class="fa fa-exclamation-triangle"></i> Contact number must be numeric!
+											</div>
 									<?php			
 									}	
 								}
