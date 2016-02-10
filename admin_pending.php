@@ -2,15 +2,15 @@
 <?php
 	include("connection.php");
 	session_start();
-	
+
 	if (isset($_SESSION['id']))
 	{
-		 
+
 		$sess_id=$_SESSION["id"];
-		
+
 		$staff_result = mysql_query("select * from staff where staff_id=$sess_id");
-		$staff_row = mysql_fetch_assoc($staff_result); 
-		
+		$staff_row = mysql_fetch_assoc($staff_result);
+
 	}
 	if(isset($_POST["upstatusbtn"]))
 			{
@@ -35,9 +35,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>MMU Accommodation Managament Admin System</title>	
+    <title>MMU Accommodation Managament Admin System</title>
     <!-- Bootstrap Core CSS -->
-	
+
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -49,7 +49,7 @@
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-	
+
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
@@ -59,14 +59,14 @@
 	<!-- css for awesome font -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-	
+
     <!-- Custom styles for this template -->
-    
-	
+
+
 	 <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
 	 <script src="jquery.js"></script>
 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	 
+
 
 
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -106,9 +106,9 @@
 					<li>
                         <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                     </li>
-					
+
                 </ul>
-				
+
             </div>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -119,12 +119,12 @@
                     <li class="active">
                         <a href="admin_pending.php"><i class="fa fa-fw fa-dashboard"></i> Pending Room</a>
                     </li>
-                   
-                    
-                    
-                    
-                    
-					
+
+
+
+
+
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -138,18 +138,19 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
+													<br>
                             Pending Room
                         </h1>
-                        
+
                     </div>
                 </div>
                 <!-- /.row -->
-				
+
                 <div class="alert alert-info">
-                    <strong>Below the list are showing the room still pending from student request. Please update room status.</strong> 
+                    <strong>Below the list are showing the room still pending from student request. Please update room status.</strong>
                 </div>
-                
-				
+
+
                 <div class="row">
                     <div class="col-lg-12">
                         <h2>Pending Room List</h2>
@@ -168,7 +169,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-								<?php 
+								<?php
 										$room_result = mysql_query("select * from waiting,room,student where waiting.place_id=room.place_id and waiting.student_id=student.student_id and room.room_status='Pending'");
 										if(mysql_num_rows($room_result)== 0)
 										{
@@ -178,7 +179,7 @@
 										}
 										else
 										{
-										while ($room_row = mysql_fetch_array($room_result)) 
+										while ($room_row = mysql_fetch_array($room_result))
 													{
 														$waiting_id = $room_row['waiting_id'];
 														$place_id = $room_row['place_id'];
@@ -204,29 +205,29 @@
 																		<input type="hidden" name="student_id" value="<?php echo $student_id; ?>">
 																		<input type="hidden" name="wait_start" value="<?php echo $wait_start; ?>">
 																		<input type="hidden" name="wait_end" value="<?php echo $wait_end; ?>">
-																
+
 																		<button type="submit" title="Update Status" class="btn btn-default btn-primary" style="float:right;" name="upstatusbtn"><i class="glyphicon glyphicon-circle-arrow-up" style="color:white;"></i>
 																		</button>
 																		</form>
 																	</td>
-																
+
 															</tr>
 														<?php
 													}
 										}
-								
+
 								?>
-                                    
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                   
+
                 </div>
-               
+
             </div>
             <!-- /.container-fluid -->
-			
+
         </div>
         <!-- /#page-wrapper -->
 
