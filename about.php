@@ -80,9 +80,6 @@
                     <li>
                         <a href="rent.php">View Available Room</a>
                     </li>
-                    <li>
-                        <a href="check_status.php">Check Booking Status</a>
-                    </li>
                     <li class="active">
                         <a href="about.php"><strong>About</strong></a>
                     </li>
@@ -246,7 +243,14 @@
 					<tr><td>Address</td><td><?php echo $student_row["student_address"]; ?></td></tr>
 					<tr><td>Date of Birth</td><td><?php echo $student_row["student_dob"]; ?></td></tr>
 					<tr><td>Course</td><td><?php echo $student_row["course_title"] ?></td></tr>
-					<tr><td>Rent Status</td><td><?php echo $student_row["student_status"]; ?></td></tr>
+					<tr><td>Rent Status</td><td><?php  $sst=$student_row["student_status"]; 
+																		if ($sst=="Pending") 
+																		{echo "<span style=\"color:orange;font-weight:bold;\">$sst</span>"; }
+																		else if ($sst=="Rented")
+																		{echo "<span style=\"color:#25a900;font-weight:bold;\">$sst</span>"; }
+																		else
+																		{echo "<span style=\"font-weight:bold;\">None</span>"; }
+											?></td>
 					<tr><td colspan="2" style="font-weight:bold;">Next-of-Kin</td></tr>
 					<tr><td colspan="2" style="background-color:#337ab7;color:white;font-size:15pt;font-family:serif;"><?php echo $student_row["relative_name"]; ?>
 						<button type="button" title="Update next-of-kin profile" class="btn btn-default btn-primary" data-toggle="modal" data-target="#relativeModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg" style="color:white;"></i>
