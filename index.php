@@ -133,6 +133,27 @@
                             </li>
                             
                 </ol>
+				<!-- LINE FROM 436 -->
+				<?php
+				if(isset($_POST['btn_index']))
+				{
+					$studentstatus = $student_row["student_status"];
+					if($studentstatus!="None")
+					{ ?>
+								<div class="container">
+									<div style="width: 98.4%;">
+										<div class="alert alert-warning">
+												<i class="fa fa-exclamation-triangle"></i>You have booked a room!
+											</div>
+									</div>
+								</div>
+			<?php	}
+					else
+					{
+						header('location: rent.php');
+					}
+				}
+			?>
 				<div class="col-sm-4">
 				  <form method='POST'>
 				  <input class="btn btn-lg btn-success btn-block" type="submit" value="Check Booking Status" name='chk_status'>
@@ -268,12 +289,12 @@
 					<tr><td>Date of Birth</td><td><?php echo $student_row["student_dob"]; ?></td></tr>
 					<tr><td>Course</td><td><?php echo $student_row["course_title"] ?></td></tr>
 					<tr><td>Rent Status</td><td><?php  $sst=$student_row["student_status"]; 
-																		if ($sst=='Pending') 
-																		{echo "<span style='color:orange'>$sst</span>"; }
-																		else if ($sst=='Rented')
-																		{echo "<span style='color:skyblue'>$sst</span>"; }
+																		if ($sst=="Pending") 
+																		{echo "<span style=\"color:orange;font-weight:bold;\">$sst</span>"; }
+																		else if ($sst=="Rented")
+																		{echo "<span style=\"color:#25a900;font-weight:bold;\">$sst</span>"; }
 																		else
-																		{echo "<span>$sst</span>"; }
+																		{echo "<span style=\"font-weight:bold;\">None</span>"; }
 											?></td>
 					</tr>
 					<tr><td colspan="2" style="font-weight:bold;">Next-of-Kin</td></tr>
@@ -437,20 +458,7 @@
 			</div>
 			</form>
 			
-			<?php
-				if(isset($_POST['btn_index']))
-				{
-					$studentstatus = $student_row["student_status"];
-					if($studentstatus!="none")
-					{ ?>
-						<script>alert("You have book a room !");</script>
-			<?php	}
-					else
-					{
-						header('location: rent.php');
-					}
-				}
-			?>
+			
         </body>
            
 </html>
