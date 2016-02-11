@@ -386,7 +386,7 @@
 				?>
 				
 				<div class="col-sm-4" style="margin-top:10px;">
-				<h3>Please select a Room</h3>
+				<h3><b>Please select a Room</b></h3>
 				<form method="POST">
 				<table style="width:730px;">
 				<tr>
