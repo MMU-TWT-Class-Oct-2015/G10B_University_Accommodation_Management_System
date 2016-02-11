@@ -106,7 +106,7 @@
 				?>			<script>alert('You have no book any room')</script>
 				<?php
 						}
-						else if($student_row['student_status']=='pending' || $student_row['student_status']=='rented')
+						else if($student_row['student_status']=='Pending' || $student_row['student_status']=='Rented')
 						{
 							header('location: check_status.php');
 						}
