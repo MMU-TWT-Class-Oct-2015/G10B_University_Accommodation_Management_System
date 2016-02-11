@@ -100,6 +100,7 @@ body
 								if(empty($_POST['id']) || empty($_POST['password']))
 								{
 							?>
+									&nbsp;
 									<div class="alert alert-danger">
 												<strong>ERROR!</strong> Please fill in ID and Password!
 											</div>
@@ -108,6 +109,7 @@ body
 								else if($check_student != $pass)
 								{
 									?>
+										&nbsp;
 										<div class="alert alert-warning">
 											<strong>Warning!</strong> ID or Password does not match!
 											</div>
@@ -116,6 +118,7 @@ body
 								else if($check_staff != $pass)
 								{
 									?> 
+										&nbsp;
 										<div class="alert alert-warning">
 											<strong>Warning!</strong> ID or Password does not match!
 										</div>
