@@ -247,6 +247,7 @@
 
 												while ($room_row = mysql_fetch_array($room_detail))
 												{
+
 														$place_id = $room_row['place_id'];
 														$room_num = $room_row['room_num'];
 														$room_rent = $room_row['room_rent'];
@@ -264,7 +265,7 @@
 																		else
 																		{echo "<span>$room_status</span>"; }
 																	?></td>
-                                  <td><input type = "checkbox" name="chkout" class=" btn-block"></td>
+                                  <td><input type = "checkbox" name="chkout[]" class=" btn-block"></td>
 															</tr>
 
 
@@ -280,7 +281,19 @@
                                     <input type="button" value="checkout" name="chkout_btn" class="btn btn-lg btn-success">
                                   </form>
                                 </div>
-
+                                <?php
+                                if(gettype($_POST['place_id'])=="array"){
+                                        foreach($_POST['place_id'] as $val){
+                                         $id_c = $val;
+                                         $query2 = "UPDATE room SET room_status = 'none' where place_id='".$id_c."'";
+                                         $result2 = mysql_query($query2);
+                                         if($result2 === false) {
+                                            die(mysql_error());
+                                         }
+                                         echo "Status " .$id_c. " is updated. <br>";
+                                        }
+                                    }
+                                    ?>
                             </div>
                         </div>
                     </div>
