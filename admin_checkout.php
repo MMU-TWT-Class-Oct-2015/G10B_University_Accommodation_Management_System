@@ -103,18 +103,21 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
 					<li>
+
                         <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> View Hall and Room Status</a>
                     </li>
                     <li>
                         <a href="admin_pending.php"><i class="fa fa-fw fa-dashboard"></i> Pending Room</a>
                     </li>
-                    <li class="active">
-                        <a href="admin_checkout.php"><i class="fa fa-fw fa-table"></i> Check out</a>
+					<li class="active">
+						<a href="admin_checkout.php"><i class="fa fa-fw fa-table"></i> Check out</a>
+					</li>
+					<li>
+                        <a href="admin_course.php"><i class="fa fa-fw fa-table"></i> Course</a>
                     </li>
-                    <li>
-                        <a href="admin_course.php"><i class="fa fa-fw fa-table"></i>Student Course</a>
+					<li>
+                        <a href="admin_student.php"><i class="fa fa-fw fa-table"></i> Student</a>
                     </li>
-
 
 
 

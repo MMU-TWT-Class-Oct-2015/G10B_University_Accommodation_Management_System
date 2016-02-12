@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <?php
 	include("connection.php");
 	session_start();
@@ -100,10 +100,10 @@
             </div>
 
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
+             <div class="collapse navbar-collapse navbar-ex1-collapse">
 
                 <ul class="nav navbar-nav side-nav">
-					<li class="active">
+					<li>
 
                         <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> View Hall and Room Status</a>
                     </li>
@@ -116,7 +116,7 @@
 					<li>
                         <a href="admin_course.php"><i class="fa fa-fw fa-table"></i> Course</a>
                     </li>
-					<li>
+					<li class="active">
                         <a href="admin_student.php"><i class="fa fa-fw fa-table"></i> Student</a>
                     </li>
 
@@ -136,137 +136,63 @@
                     <div class="col-lg-12">
                         <h1 class="page-header" >
 													<br>
-                            View Hall and Room Status
+                            View and edit student course
                         </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
 
-									<label for="sel1">Please select a hall:  </label>
-
-                            </li>
-							 <li class="active">
-									<div class="form-group">
-									<form action="" method="post" >
-									<select class="form-control" id="sel1" name="selecthall">
-											<option value="0" selected></option>;
-									<?php
-										$hall_result = mysql_query("select * from hall");
-										while ($hall_row = mysql_fetch_array($hall_result))
-										{
-												$hall_id = $hall_row['hall_id'];
-												$hall_name = $hall_row['hall_name'];
-
-												echo "<option value='$hall_id' class='alert alert-success'>$hall_name</option>";
-										}
-
-									?>
-									</select>
-
-									</div>
-
-                            </li>
-							<li class="active" style="margin-left:50px;">
-                               <p>
-										<?php
-											if (isset($_POST['subbtn']))
-											{
-												if($_POST['selecthall']=="0")
-												{
-														echo "<br>";
-												}
-												else
-												{
-												$selecthall = $_POST['selecthall'];
-												$displayname = mysql_query("select hall_name from hall where hall_id = '$selecthall'");
-												$displaynamerow = mysql_fetch_assoc($displayname);
-												$hall_name1 = $displaynamerow['hall_name'];
-
-												echo "<p>You are selecting <strong>$hall_name1</strong>.</p>";
-												}
-
-											}
-											else
-											{
-												echo "<p>You are not select hall yet.</p>";
-											}
-
-
-										?>
-							   </p>
-                            </li>
-							<li class="active" style="float:right;">
-                               <input class="btn btn-lg btn-success btn-block" type="submit" value="Submit" name="subbtn">
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <div class="alert alert-info">
-                    <strong>Hall Detail: </strong>
-					<?php
-						if (isset($_POST['subbtn']))
-						{
-							if($_POST['selecthall']=="0")
-							{
-									echo "<p>Please select a hall to continue.</p>";
-							}
-							else
-							{
-							$selecthall = $_POST['selecthall'];
-							$hall_detail = mysql_query("select * from hall where hall_id = '$selecthall'");
-							$hall_detailrow = mysql_fetch_assoc($hall_detail);
-							$hall_name2 = $hall_detailrow['hall_name'];
-							$hall_address = $hall_detailrow['hall_address'];
-							$hall_hp = $hall_detailrow['hall_hp'];
-							$hall_manager = $hall_detailrow['hall_manager'];
-							echo "<div class='alert alert-success'><strong>$hall_name2</strong> <strong style='margin-left:50px;'>Address: </strong>$hall_address
-																	<strong style='margin-left:50px;'>H/P: </strong>$hall_hp <strong style='margin-left:50px;'>Manager: </strong>$hall_manager</div>";
-
-					?>
-                </div>
 
                 <div class="row">
 
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>Room detail of <strong><?php echo "$hall_name2"?></strong></h3>
+                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>Student detail</h3>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-hover table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Place ID</th>
-                                                <th>Room Number</th>
-                                                <th>Room Rent</th>
-                                                <th>Room Status</th>
+                                                <th>Student ID</th>
+                                                <th>Student Name</th>
+                                                <th>Course Title</th>
+                                                <th>Change Course</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 											<?php
-												$room_detail = mysql_query("select * from hall,room where hall.hall_id = '$selecthall' and room.hall_id='$selecthall'");
+												$student_detail = mysql_query("select * from student");
 
-												while ($room_row = mysql_fetch_array($room_detail))
+												while ($student_row = mysql_fetch_array($student_detail))
 												{
-														$place_id = $room_row['place_id'];
-														$room_num = $room_row['room_num'];
-														$room_rent = $room_row['room_rent'];
-														$room_status = $room_row['room_status'];
+														$student_id = $student_row['student_id'];
+														$student_name = $student_row['student_name'];
+                            $course_id = $student_row['course_id'];
+
 														?>
 															<tr>
-																	<td><?php echo $place_id ?></td>
-																	<td><?php echo $room_num ?></td>
-																	<td><?php echo $room_rent ?></td>
-																	<td><?php
-																		if ($room_status=='Pending')
-																		{echo "<span style='color:orange'>$room_status</span>"; }
-																		else if ($room_status=='Rented')
-																		{echo "<span style='color:skyblue'>$room_status</span>"; }
-																		else
-																		{echo "<span>$room_status</span>"; }
-																	?></td>
+																	<td><?php echo $student_id ?></td>
+																	<td><?php echo $student_name ?></td>
+                                  <td><?php echo $course_id ?></td>
+																	<td>
+                                    <select class="form-control" id="course" name="select_course">
+                                      	<option value="0" selected></option>;
+                                    <?php
+                                    $course_result = mysql_query("select * from course");
+
+
+                                      while ($course_row = mysql_fetch_array($course_result))
+                                      {
+
+                                          $course_id = $course_row['course_id'];
+                                          $course_title = $course_row['course_title'];
+
+                                          echo "<option value='$course_id' class='alert alert-success'>$course_title</option>";
+                                      }
+
+                                    ?>
+                                    </select>
+                                  </td>
+
 															</tr>
 														<?php
 												}
@@ -275,24 +201,18 @@
 											?>
 
                                         </tbody>
+
                                     </table>
+                                    <input class="btn btn-lg btn-success" type="submit" value="change" name="cobtn" onclick="edit()">
                                 </div>
+
 
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- /.row -->
-			<?php
-			}
 
-						}
-						else
-						{
-							echo "<br>";
-						}
-
-			?>
             </div>
             <!-- /.container-fluid -->
 

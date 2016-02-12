@@ -100,7 +100,7 @@
             </div>
 
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
+             <div class="collapse navbar-collapse navbar-ex1-collapse">
 
                 <ul class="nav navbar-nav side-nav">
 					<li>
@@ -110,14 +110,15 @@
                     <li>
                         <a href="admin_pending.php"><i class="fa fa-fw fa-dashboard"></i> Pending Room</a>
                     </li>
-										<li>
-												<a href="admin_checkout.php"><i class="fa fa-fw fa-table"></i> Check out</a>
-										</li>
-                    <li class="active">
-												<a href="admin_course.php"><i class="fa fa-fw fa-table"></i>Student Course</a>
-										</li>
-
-
+					<li>
+						<a href="admin_checkout.php"><i class="fa fa-fw fa-table"></i> Check out</a>
+					</li>
+					<li class="active">
+                        <a href="admin_course.php"><i class="fa fa-fw fa-table"></i> Course</a>
+                    </li>
+					<li>
+                        <a href="admin_student.php"><i class="fa fa-fw fa-table"></i> Student</a>
+                    </li>
 
 
 
