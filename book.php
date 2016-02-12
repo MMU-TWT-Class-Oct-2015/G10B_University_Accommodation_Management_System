@@ -84,9 +84,6 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float:right;margin-right:10px;">
                 <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="rent.php">View Available Room</a>
-                    </li>
                     <li>
                         <a href="about.php">About</a>
                     </li>
@@ -452,7 +449,7 @@
 										
 											<div class="alert alert-warning" style="width:730px;">
 											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-												<i class="fa fa-hourglass"></i> Waiting for Aproval.
+												<i class="fa fa-hourglass"></i> Waiting for Approval.
 											</div>	
 									<?php
 											header("Refresh:3; url=index.php");
