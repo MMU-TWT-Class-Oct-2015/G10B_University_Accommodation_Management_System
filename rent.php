@@ -13,6 +13,7 @@
 		$student_row = mysql_fetch_assoc($student_result); 
 		
 	}
+	$hall_result = mysql_query("select * from hall");
 ?>
 <html>
 <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
@@ -78,14 +79,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float:right;margin-right:10px;">
                 <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="rent.php"><strong>View Available Room</strong></a>
-                    </li>
                     <li>
                         <a href="about.php">About</a>
                     </li>
                     <li>
-                        <a href="#" style="color:skyblue;"><?php echo $student_row["student_name"] ?></a>
+                        <a href="#" style="color:skyblue;cursor:context-menu;"><?php echo $student_row["student_name"] ?></a>
                     </li>
 					<li>
                         <a href="logout.php">Logout</a>
