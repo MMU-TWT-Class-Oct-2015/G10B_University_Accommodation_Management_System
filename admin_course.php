@@ -153,8 +153,8 @@
                                             <tr>
                                                 <th>Student ID</th>
                                                 <th>Student Name</th>
-                                                <th>Course ID</th>
-
+                                                <th>Course Title</th>
+                                                <th>Change Course</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -165,24 +165,27 @@
 												{
 														$student_id = $student_row['student_id'];
 														$student_name = $student_row['student_name'];
-
+                            $course_id = $student_row['course_id'];
 
 														?>
 															<tr>
 																	<td><?php echo $student_id ?></td>
 																	<td><?php echo $student_name ?></td>
+                                  <td><?php echo $course_id ?></td>
 																	<td>
-                                    <select class="form-control" id="course" name="course_id">
-
+                                    <select class="form-control" id="course" name="select_course">
+                                      	<option value="0" selected></option>;
                                     <?php
+                                    $course_result = mysql_query("select * from course");
 
-                                      $course_result = mysql_query("select * from course");
+
                                       while ($course_row = mysql_fetch_array($course_result))
                                       {
+
                                           $course_id = $course_row['course_id'];
                                           $course_title = $course_row['course_title'];
 
-                                          echo "<option value='$course_id' class='alert alert-success' selected>$course_title</option>";
+                                          echo "<option value='$course_id' class='alert alert-success'>$course_title</option>";
                                       }
 
                                     ?>
@@ -197,8 +200,11 @@
 											?>
 
                                         </tbody>
+
                                     </table>
+                                    <input class="btn btn-lg btn-success" type="submit" value="change" name="cobtn" onclick="edit()">
                                 </div>
+
 
                             </div>
                         </div>
