@@ -12,6 +12,23 @@
 		$staff_row = mysql_fetch_assoc($staff_result);
 
 	}
+	
+    if(isset($_POST['place_id']))
+	{	$pid=$_POST['place_id'];
+		$update_detail = mysql_query("select * from student,agreement where agreement.place_id = '$pid' and agreement.student_id=student.student_id");
+		$uprow = mysql_fetch_assoc($update_detail);
+		$sid = $uprow["student_id"];   
+		
+        mysql_query("update room set room_status = 'None' where place_id='$pid'");
+		mysql_query("update student set student_status = 'None' where student_id='$sid'");
+		?>
+						<script type="text/javascript">
+								window.alert('Sucess to Checkout');
+						</script>
+		<?php
+     
+    }
+
 
 ?>
 <html>
@@ -72,7 +89,7 @@
 <body>
 
     <div id="wrapper">
-
+		<form name="co_form" method="post">
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -127,7 +144,7 @@
         </nav>
 
         <div id="page-wrapper">
-
+		
             <div class="container-fluid">
 
                 <!-- Page Heading -->
@@ -145,7 +162,7 @@
                             </li>
 							 <li class="active">
 									<div class="form-group">
-									<form action="" method="post" >
+									
 									<select class="form-control" id="sel1" name="selecthall">
 											<option value="0" selected></option>;
 									<?php
@@ -235,6 +252,7 @@
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-hover table-striped">
+									
                                         <thead>
                                             <tr>
                                                 <th>Place ID</th>
@@ -246,58 +264,57 @@
                                         </thead>
                                         <tbody>
 											<?php
-												$room_detail = mysql_query("select * from hall,room where hall.hall_id = '$selecthall' and room.hall_id='$selecthall' and room.room_status='rented'");
-
-												while ($room_row = mysql_fetch_array($room_detail))
+												$room_detail = mysql_query("select * from hall,room where hall.hall_id = '$selecthall' and room.hall_id='$selecthall' and room.room_status='Rented'");
+												if(mysql_num_rows($room_detail)== 0)
 												{
+													?>
+																<tr><td colspan="8" style="text-align:center;">No Room is Rented now.</td></tr>
+													<?php
+												}
+												else
+												{
+													while ($room_row = mysql_fetch_array($room_detail))
+													{
 
-														$place_id = $room_row['place_id'];
-														$room_num = $room_row['room_num'];
-														$room_rent = $room_row['room_rent'];
-														$room_status = $room_row['room_status'];
-														?>
-															<tr>
-																	<td name="place_id[]"><?php echo $place_id ?></td>
-																	<td><?php echo $room_num ?></td>
-																	<td><?php echo $room_rent ?></td>
-																	<td><?php
-																		if ($room_status=='Pending')
-																		{echo "<span style='color:orange'>$room_status</span>"; }
-																		else if ($room_status=='Rented')
-																		{echo "<span style='color:skyblue'>$room_status</span>"; }
-																		else
-																		{echo "<span>$room_status</span>"; }
-																	?></td>
-                                  <td><input type = "checkbox" name="chkout[]" class=" btn-block"></td>
-															</tr>
+															$place_id = $room_row['place_id'];
+															$room_num = $room_row['room_num'];
+															$room_rent = $room_row['room_rent'];
+															$room_status = $room_row['room_status'];
+															?>
+																<tr>
+																		<td><?php echo $place_id ?></td>
+																		<td><?php echo $room_num ?></td>
+																		<td><?php echo $room_rent ?></td>
+																		<td><?php
+																			if ($room_status=='Pending')
+																			{echo "<span style='color:orange'>$room_status</span>"; }
+																			else if ($room_status=='Rented')
+																			{echo "<span style='color:skyblue'>$room_status</span>"; }
+																			else
+																			{echo "<span>$room_status</span>"; }
+																		?></td>
+																		<td style="text-align:center;">
+																			<input type="hidden" name="place_id" value="<?php echo $place_id; ?>">
+
+																			<button type="submit" title="Checkout" class="btn btn-default btn-primary" name="cobtn"><i class="glyphicon glyphicon-share" style="color:white;"></i>
+																			</button>
+																		</td>
+																</tr>
 
 
-														<?php
+															<?php
+													}
 												}
 
 
 											?>
 
                                         </tbody>
-<form name="co_form" method="post">
+									
                                     </table>
-                                    <input type="button" value="checkout" name="chkout_btn" class="btn btn-lg btn-success">
-                                  </form>
-                                </div>
-                                <?php
-                                if(gettype($_POST['place_id'])=="array"){
-                                        foreach($_POST['place_id'] as $val){
-                                         $id_c = $val;
-                                         $query2 = "UPDATE room SET room_status = 'none' where place_id='".$id_c."'";
-                                         $result2 = mysql_query($query2);
-                                         if($result2 === false) {
-                                            die(mysql_error());
-                                         }
-                                         echo "Status " .$id_c. " is updated. <br>";
-                                        }
-                                    }
-                                    ?>
-                            </div>
+                                   
+                                  
+                                
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,32 @@
 		$staff_row = mysql_fetch_assoc($staff_result);
 
 	}
-
+			if(isset($_POST["student_id"]))
+			{
+						
+						$sid=$_POST["student_id"];
+						mysql_query("DELETE FROM student WHERE student_id='$sid'");
+						mysql_query("DELETE FROM relative WHERE student_id='$sid'");
+						?>
+						<script type="text/javascript">
+								window.alert('Deleted');
+						</script>
+					<?php
+						
+			}
+			if(isset($_POST["relative_id"]))
+			{
+						
+						$rid=$_POST["relative_id"];
+			
+						header("Location:admin_form.php?relativeid='$rid'");
+						
+			}
+			if(isset($_POST["addbtn"]))
+			{
+						
+						header("Location:admin_form.php");
+			}
 ?>
 <html>
 
@@ -72,7 +97,8 @@
 <body>
 
     <div id="wrapper">
-
+	<form name="statusfrm" method="POST">
+        <!-- Navigation -->
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -86,7 +112,7 @@
                 <a class="navbar-brand" href="admin_index.php">MMU Accommodation Managament Admin System</a>
             </div>
             <!-- Top Menu Items -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float:right;margin-right:10px;">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float:right;margin-right:10px;">
                 <ul class="nav navbar-nav">
                     <li class="active">
                         <a href="#"><i class="fa fa-user"></i><?php echo $staff_row["staff_name"] ?></a>
@@ -98,7 +124,6 @@
                 </ul>
 
             </div>
-
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
              <div class="collapse navbar-collapse navbar-ex1-collapse">
 
@@ -107,7 +132,7 @@
 
                         <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> View Hall and Room Status</a>
                     </li>
-                    <li>
+                    <li >
                         <a href="admin_pending.php"><i class="fa fa-fw fa-dashboard"></i> Pending Room</a>
                     </li>
 					<li>
@@ -134,94 +159,145 @@
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header" >
+                        <h1 class="page-header">
 													<br>
-                            View and edit student course
+                            Student
                         </h1>
 
-
-                <div class="row">
-
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>Student detail</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Student ID</th>
-                                                <th>Student Name</th>
-                                                <th>Course Title</th>
-                                                <th>Change Course</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-											<?php
-												$student_detail = mysql_query("select * from student");
-
-												while ($student_row = mysql_fetch_array($student_detail))
-												{
-														$student_id = $student_row['student_id'];
-														$student_name = $student_row['student_name'];
-                            $course_id = $student_row['course_id'];
-
-														?>
-															<tr>
-																	<td><?php echo $student_id ?></td>
-																	<td><?php echo $student_name ?></td>
-                                  <td><?php echo $course_id ?></td>
-																	<td>
-                                    <select class="form-control" id="course" name="select_course">
-                                      	<option value="0" selected></option>;
-                                    <?php
-                                    $course_result = mysql_query("select * from course");
-
-
-                                      while ($course_row = mysql_fetch_array($course_result))
-                                      {
-
-                                          $course_id = $course_row['course_id'];
-                                          $course_title = $course_row['course_title'];
-
-                                          echo "<option value='$course_id' class='alert alert-success'>$course_title</option>";
-                                      }
-
-                                    ?>
-                                    </select>
-                                  </td>
-
-															</tr>
-														<?php
-												}
-
-
-											?>
-
-                                        </tbody>
-
-                                    </table>
-                                    <input class="btn btn-lg btn-success" type="submit" value="change" name="cobtn" onclick="edit()">
-                                </div>
-
-
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- /.row -->
 
+                <div class="alert alert-info">
+                    <strong>Below the list are showing the student still.</strong>
+					<input class="btn btn-lg btn-primary btn-block" type="submit" name="addbtn" value="Add Student">
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Student List</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Address</th>
+										<th>Date of Birth</th>
+										<th>Category</th>
+                                        <th>Status</th>
+										<th>Course</th>
+										<th>H/P</th>
+										<th>Password</th>
+										<th> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+								<?php	
+									
+										$student_result = mysql_query("select * from student,course,relative where relative.student_id=student.student_id and student.course_id=course.course_id");
+										if(mysql_num_rows($student_result)== 0)
+										{
+								?>
+											<tr><td colspan="10" style="text-align:center;">Student List is Empty.</td></tr>
+								<?php
+										}
+										else
+										{
+										while ($student_row = mysql_fetch_array($student_result))
+													{	
+														
+														$student_id = $student_row['student_id'];
+														$student_name = $student_row['student_name'];
+														$student_address = $student_row['student_address'];
+														$student_dob = $student_row['student_dob'];
+														$student_category = $student_row['student_category'];
+														$student_status = $student_row['student_status'];
+														$course_id = $student_row['course_id'];
+														$student_hp = $student_row['student_hp'];
+														$student_pass = $student_row['student_pass'];
+														
+														
+														?>
+															<tr>
+															
+																	<td><?php echo $student_id ?></td>
+																	<td><?php echo $student_name ?></td>
+																	<td><?php echo $student_address ?></td>
+																	<td><?php echo $student_dob ?></td>
+																	<td><?php echo $student_category ?></td>
+																	<td><?php echo $student_status ?></td>
+																	<td><?php echo $course_id ?></td>
+																	<td><?php echo $student_hp ?></td>
+																	<td><?php echo $student_pass ?></td>
+																	<td>
+																		
+																		<input type="hidden" name="student_id" value="<?php echo $student_id; ?>">
+																		
+																		<button type="submit" title="Edit" class="btn btn-default btn-primary" style="" name="seditbtn"><i class="glyphicon glyphicon-pencil" style="color:white;"></i></button>
+																		<button type="submit" title="Delete" class="btn btn-default btn-primary" style="float:right;" name="sdelbtn"><i class="glyphicon glyphicon-remove" style="color:white;"></i></button>
+																		
+																	</td>
+
+															</tr>
+															<?php 
+																$relative_id = $student_row['relative_id'];
+																$relative_name = $student_row['relative_name'];
+																$relative_relation = $student_row['relative_relation'];
+																$relative_address = $student_row['relative_address'];
+																$relative_hp = $student_row['relative_hp'];
+															
+															?>
+															 <tr>
+																<th>Relative</th>
+																<td>ID: <?php echo $relative_id ?></td>
+																<th>Name</th>
+																<td><?php echo $relative_name ?></td>
+																<th>Relation</th>
+																<td><?php echo $relative_relation ?></td>
+																<th>Address</th>
+																<td><?php echo $relative_address ?></td>
+																<th>H/P: <?php echo $relative_hp ?></th>
+																<td>
+																	<input type="hidden" name="relative_id" value="<?php echo $relative_id; ?>">
+																		
+																	<button type="submit" title="Edit" class="btn btn-default btn-primary" style="" name="reditbtn"><i class="glyphicon glyphicon-pencil" style="color:white;"></i></button>
+																	
+																
+																</td>
+															</tr>
+															
+															
+														<?php
+													}
+										}
+
+								?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
             <!-- /.container-fluid -->
-
+		</form>
         </div>
         <!-- /#page-wrapper -->
 
     </div>
+    <!-- /#wrapper -->
 
-	</form>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+	
+
 </body>
 
 </html>

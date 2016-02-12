@@ -199,6 +199,7 @@
 														$room_status = $room_row['room_status'];
 														?>
 															<tr>
+															<form name="statusfrm" method="POST">
 																	<td><?php echo $waiting_id ?></td>
 																	<td><?php echo $place_id ?></td>
 																	<td><?php echo $student_id ?></td>
@@ -207,7 +208,7 @@
 																	<td><?php echo $wait_start ?></td>
 																	<td><?php echo $wait_end ?></td>
 																	<td><?php echo "<span style='color:orange'>$room_status</span>" ?>
-																		<form name="statusfrm" method="POST">
+																		
 																		<input type="hidden" name="waiting_id" value="<?php echo $waiting_id; ?>">
 																		<input type="hidden" name="place_id" value="<?php echo $place_id; ?>">
 																		<input type="hidden" name="student_id" value="<?php echo $student_id; ?>">
@@ -216,10 +217,11 @@
 
 																		<button type="submit" title="Update Status" class="btn btn-default btn-primary" style="float:right;" name="upstatusbtn"><i class="glyphicon glyphicon-circle-arrow-up" style="color:white;"></i>
 																		</button>
-																		</form>
+																		
 																	</td>
 
 															</tr>
+															</form>
 														<?php
 													}
 										}
