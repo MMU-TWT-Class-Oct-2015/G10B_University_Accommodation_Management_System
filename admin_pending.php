@@ -119,6 +119,9 @@
                     <li class="active">
                         <a href="admin_pending.php"><i class="fa fa-fw fa-dashboard"></i> Pending Room</a>
                     </li>
+										<li>
+												<a href="admin_checkout.php"><i class="fa fa-fw fa-table"></i> Check out</a>
+										</li>
 
 
 
