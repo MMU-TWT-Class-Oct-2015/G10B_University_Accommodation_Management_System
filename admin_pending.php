@@ -122,7 +122,9 @@
 										<li>
 												<a href="admin_checkout.php"><i class="fa fa-fw fa-table"></i> Check out</a>
 										</li>
-
+										<li>
+                        <a href="admin_course.php"><i class="fa fa-fw fa-table"></i>Student Course</a>
+                    </li>
 
 
 
