@@ -428,7 +428,7 @@
 						<ol>
 						<li class="text-primary">Select Hall</li>
 						<li class="text-success">Choose available room</li>
-						<li class="text-info">Fill in your information and sumbit the form </li>
+						<li class="text-info">Fill in your information and submit the form </li>
 						<li class="text-warning">Check your booking status</li>
 						<li class="text-danger">Make deposit payment at finance department</li>
 						</ol>
