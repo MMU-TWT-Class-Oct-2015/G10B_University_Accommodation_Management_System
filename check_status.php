@@ -75,13 +75,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float:right;margin-right:10px;">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="rent.php">View Available Room</a>
-                    </li>
-                    <li>
                         <a href="about.php"><strong>About</strong></a>
                     </li>
                     <li>
-                        <a href="#" style="color:skyblue;"><?php echo $student_row["student_name"] ?></a>
+                        <a href="#" style="color:skyblue;cursor:context-menu;"><?php echo $student_row["student_name"] ?></a>
                     </li>
 					<li>
                         <a href="logout.php">Logout</a>
@@ -117,13 +114,16 @@
 				 
 				
 				<table class="table table-bordered" style="text-align:center;margin-top:30px;">
-					<tr><td colspan="2" style="background-color:#019875;color:white;font-size:20pt;font-family:serif";"><?php echo $student_row["student_name"]; ?>
- 						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="background-color:#019875;float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
+					<tr><td colspan="2" style="background-color:#337ab7;color:white;font-size:15pt;font-family:serif;"><?php echo $student_row["student_name"]; ?>
+						<button type="button" title="Update student profile" class="btn btn-default btn-primary" data-toggle="modal" data-target="#studentModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg" style="color:white;"></i>
+                            </button>
 						<!-- Modal -->
-						<div id="myModal" class="modal fade" role="dialog">
+						
+						<div id="studentModal" class="modal fade" role="dialog">
 						  <div class="modal-dialog">
+
 							<!-- Modal content-->
-<div class="modal-content" style="color:black;font-family:serif;font-size:12pt;">
+							<div class="modal-content" style="color:black;font-family:serif;font-size:12pt;">
 							  <div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<h4 class="modal-title">Update Profile</h4>
@@ -150,6 +150,7 @@
 							  <div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 								<input type="submit" class="btn btn-primary" value="Save and Exit" name="edit_student">
+								
 							  </div>
 							</div>
 							</form>
@@ -163,18 +164,35 @@
 								
 								if(empty($news_hp) && empty($news_add))
 								{ ?>
-									<script>alert("No information has been saved!");</script>	
+									&nbsp;
+									<div class="alert alert-warning">
+												<i class="fa fa-exclamation-triangle"></i> No information has been saved!
+											</div>
 								<?php
+									
 								}
 								else if(empty($news_add))
 								{
 									if(is_numeric($news_hp) == true)
 									{
 										mysql_query("update student set student_hp='$news_hp' where student_id='$sess_id'");
+										header("Refresh:3");
+										?>
+										&nbsp;
+										<div class="alert alert-success">
+												<i class="fa fa-check-circle"></i> Information has been saved!
+											</div>
+											
+											<?php
+											
 									}
 									else
 									{ ?>
-										<script>alert("Contact number must be numeric!");</script>
+										&nbsp;
+										<div class="alert alert-warning">
+												<i class="fa fa-exclamation-triangle"></i> Contact number must be numeric!
+											</div>
+										
 									<?php			
 									}	
 									
@@ -182,21 +200,42 @@
 								else if(empty($news_hp))
 								{
 									mysql_query("update student set student_address='$news_add' where student_id='$sess_id'");
+									header("Refresh:3");
+									?>
+										&nbsp;
+										<div class="alert alert-success">
+												<i class="fa fa-check-circle"></i> Information has been saved!
+											</div>
+											<?php
 								}
+									
 								else
 								{ 
 									if(is_numeric($news_hp) == true)
 									{
 										mysql_query("update student set student_hp='$news_hp',student_address='$news_add' where student_id='$sess_id'");
+										header("Refresh:3");
+										?>
+										&nbsp;
+										<div class="alert alert-success">
+												<i class="fa fa-check-circle"></i> Information has been saved!
+											</div>
+											<?php
 									}
+										
 									else
 									{ ?>
-										<script>alert("Contact number must be numeric!");</script>
+										&nbsp;
+										<div class="alert alert-warning">
+												<i class="fa fa-exclamation-triangle"></i> Contact number must be numeric!
+											</div>
+										
 									<?php			
 									}	
 								}
 							}
 						?>
+
 					</tr>
 					<tr><td>Matric Number</td><td><?php echo $student_row["student_id"]; ?></td></tr>
 					<tr><td>Contact Number</td><td><?php echo $student_row["student_hp"]; ?></td></tr>
@@ -204,16 +243,25 @@
 					<tr><td>Address</td><td><?php echo $student_row["student_address"]; ?></td></tr>
 					<tr><td>Date of Birth</td><td><?php echo $student_row["student_dob"]; ?></td></tr>
 					<tr><td>Course</td><td><?php echo $student_row["course_title"] ?></td></tr>
-					<tr><td>Rent Status</td><td><?php echo $student_row["student_status"]; ?></td></tr>
+					<tr><td>Rent Status</td><td><?php  $sst=$student_row["student_status"]; 
+																		if ($sst=="Pending") 
+																		{echo "<span style=\"color:orange;font-weight:bold;\">$sst</span>"; }
+																		else if ($sst=="Rented")
+																		{echo "<span style=\"color:#25a900;font-weight:bold;\">$sst</span>"; }
+																		else
+																		{echo "<span style=\"font-weight:bold;\">None</span>"; }
+											?></td>
+					</tr>
 					<tr><td colspan="2" style="font-weight:bold;">Next-of-Kin</td></tr>
-					<tr><td colspan="2" style="background-color:#019875;color:white;font-size:20pt;font-family:serif;";"><?php echo $student_row["relative_name"]; ?>
-						<button type="button" title="Update next-of-kin profile" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="background-color:#019875;float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg"></i></button>
-						<!-- Modal -->
-						<div id="myModal" class="modal fade" role="dialog">
+					<tr><td colspan="2" style="background-color:#337ab7;color:white;font-size:15pt;font-family:serif;"><?php echo $student_row["relative_name"]; ?>
+						<button type="button" title="Update next-of-kin profile" class="btn btn-default btn-primary" data-toggle="modal" data-target="#relativeModal" style="float:right;"><i class="glyphicon glyphicon-edit glyphicon-lg" style="color:white;"></i>
+                           </button>					
+						   <!-- Modal -->
+						<div id="relativeModal" class="modal fade" role="dialog">
 						  <div class="modal-dialog">
 
 							<!-- Modal content-->
-<div class="modal-content">
+							<div class="modal-content" style="color:black;font-family:serif;font-size:12pt;">
 							  <div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<h4 class="modal-title">Update Profile</h4>
@@ -253,7 +301,10 @@
 								
 								if(empty($newr_hp) && empty($newr_add))
 								{ ?>
-									<script>alert("No information has been saved!");</script>	
+									&nbsp;
+									<div class="alert alert-warning">
+												<i class="fa fa-exclamation-triangle"></i> No information has been saved!
+											</div>	
 								<?php
 								}
 								else if(empty($newr_add))
@@ -261,10 +312,20 @@
 									if(is_numeric($newr_hp) == true)
 									{
 										mysql_query("update relative set relative_hp='$newr_hp' where student_id='$sess_id'");
+										header("Refresh:3");
+										?>
+										&nbsp;
+										<div class="alert alert-success">
+												<i class="fa fa-check-circle"></i> Information has been saved!
+											</div>
+											<?php
 									}
 									else
 									{ ?>
-										<script>alert("Contact number must be numeric!");</script>
+										&nbsp;
+										<div class="alert alert-warning">
+												<i class="fa fa-exclamation-triangle"></i> Contact number must be numeric!
+											</div>
 									<?php			
 									}	
 									
@@ -272,16 +333,33 @@
 								else if(empty($newr_hp))
 								{
 									mysql_query("update relative set relative_address='$newr_add' where student_id='$sess_id'");
+									header("Refresh:3");
+									?>
+										&nbsp;
+										<div class="alert alert-success">
+												<i class="fa fa-check-circle"></i> Information has been saved!
+											</div>
+											<?php
 								}
 								else
 								{ 
 									if(is_numeric($newr_hp) == true)
 									{
 										mysql_query("update relative set relative_hp='$newr_hp',relative_address='$newr_add' where student_id='$sess_id'");
+										header("Refresh:3");
+										?>
+										&nbsp;
+										<div class="alert alert-success">
+												<i class="fa fa-check-circle"></i> Information has been saved!
+											</div>
+											<?php
 									}
 									else
 									{ ?>
-										<script>alert("Contact number must be numeric!");</script>
+										&nbsp;
+										<div class="alert alert-warning">
+												<i class="fa fa-exclamation-triangle"></i> Contact number must be numeric!
+											</div>
 									<?php			
 									}	
 								}
@@ -297,15 +375,15 @@
 				</div>
 				
 				
-				<div class="col-sm-7" style="margin-top:5px;">
+				<div class="col-sm-8" style="margin-top:5px;width:65%;">
 				<?php
-					if($student_row['student_status']=='pending')
+					if($student_row['student_status']=='Pending')
 					{
 						$detail_result = mysql_query("select * from waiting,hall,room where waiting.student_id='$sess_id' and room.place_id=waiting.place_id and hall.hall_id=room.hall_id");
 						$detail_row = mysql_fetch_assoc($detail_result);
 						$leaseid = "-";
 					}
-					else if($student_row['student_status']=='rented')
+					else if($student_row['student_status']=='Rented')
 					{
 						$detail_result = mysql_query("select * from agreement,hall,room where agreement.student_id='$sess_id' and room.place_id=agreement.place_id and hall.hall_id=room.hall_id");
 						$detail_row = mysql_fetch_assoc($detail_result);

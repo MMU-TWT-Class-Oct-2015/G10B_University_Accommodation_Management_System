@@ -77,9 +77,6 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float:right;margin-right:10px;">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="rent.php">View Available Room</a>
-                    </li>
                     <li class="active">
                         <a href="about.php"><strong>About</strong></a>
                     </li>
