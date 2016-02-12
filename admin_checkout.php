@@ -111,7 +111,9 @@
                     <li class="active">
                         <a href="admin_checkout.php"><i class="fa fa-fw fa-table"></i> Check out</a>
                     </li>
-
+                    <li>
+                        <a href="admin_course.php"><i class="fa fa-fw fa-table"></i>Student Course</a>
+                    </li>
 
 
 
@@ -241,7 +243,7 @@
                                         </thead>
                                         <tbody>
 											<?php
-												$room_detail = mysql_query("select * from hall,room where hall.hall_id = '$selecthall' and room.hall_id='$selecthall' and room.room_status='yes'");
+												$room_detail = mysql_query("select * from hall,room where hall.hall_id = '$selecthall' and room.hall_id='$selecthall' and room.room_status='rented'");
 
 												while ($room_row = mysql_fetch_array($room_detail))
 												{
@@ -251,7 +253,7 @@
 														$room_status = $room_row['room_status'];
 														?>
 															<tr>
-																	<td><?php echo $place_id ?></td>
+																	<td name="place_id[]"><?php echo $place_id ?></td>
 																	<td><?php echo $room_num ?></td>
 																	<td><?php echo $room_rent ?></td>
 																	<td><?php
@@ -273,9 +275,10 @@
 											?>
 
                                         </tbody>
-
+<form name="co_form" method="post">
                                     </table>
                                     <input type="button" value="checkout" name="chkout_btn" class="btn btn-lg btn-success">
+                                  </form>
                                 </div>
 
                             </div>
