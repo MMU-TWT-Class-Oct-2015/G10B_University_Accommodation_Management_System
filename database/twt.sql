@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2016 at 09:54 PM
+-- Generation Time: Feb 12, 2016 at 02:47 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `agreement` (
   `lease_id` int(5) NOT NULL,
   `place_id` varchar(5) NOT NULL,
-  `student_id` varchar(5) NOT NULL,
+  `student_id` varchar(10) NOT NULL,
   `date_start` varchar(50) NOT NULL,
   `date_end` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
