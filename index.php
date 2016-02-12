@@ -85,9 +85,6 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float:right;margin-right:10px;">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="rent.php">View Available Room</a>
-                    </li>
-                    <li>
                         <a href="about.php">About</a>
                     </li>
                     <li>
@@ -143,6 +140,7 @@
 								<div class="container">
 									<div style="width: 98.4%;">
 										<div class="alert alert-warning">
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 												<i class="fa fa-exclamation-triangle"></i>You have booked a room!
 											</div>
 									</div>
