@@ -25,19 +25,7 @@
 					<?php
 						
 			}
-			if(isset($_POST["relative_id"]))
-			{
-						
-						$rid=$_POST["relative_id"];
 			
-						header("Location:admin_form.php?relativeid='$rid'");
-						
-			}
-			if(isset($_POST["addbtn"]))
-			{
-						
-						header("Location:admin_form.php");
-			}
 ?>
 <html>
 
@@ -169,8 +157,8 @@
                 <!-- /.row -->
 
                 <div class="alert alert-info">
-                    <strong>Below the list are showing the student still.</strong>
-					<input class="btn btn-lg btn-primary btn-block" type="submit" name="addbtn" value="Add Student">
+                    <strong>The below are showing the student list. You may add new student by click below the button.</strong>
+					<a href="admin_addstudent.php" class="btn btn-lg btn-primary btn-block">Add Student</a>
                 </div>
 
 
@@ -178,9 +166,9 @@
                     <div class="col-lg-12">
                         <h2>Student List</h2>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover" style="text-align:center;">
                                 <thead>
-                                    <tr>
+                                    <tr style="color:skyblue;">
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Address</th>
@@ -190,13 +178,13 @@
 										<th>Course</th>
 										<th>H/P</th>
 										<th>Password</th>
-										<th> </th>
+										<th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 								<?php	
 									
-										$student_result = mysql_query("select * from student,course,relative where relative.student_id=student.student_id and student.course_id=course.course_id");
+										$student_result = mysql_query("select * from student,relative where relative.student_id=student.student_id");
 										if(mysql_num_rows($student_result)== 0)
 										{
 								?>
@@ -235,8 +223,8 @@
 																		
 																		<input type="hidden" name="student_id" value="<?php echo $student_id; ?>">
 																		
-																		<button type="submit" title="Edit" class="btn btn-default btn-primary" style="" name="seditbtn"><i class="glyphicon glyphicon-pencil" style="color:white;"></i></button>
-																		<button type="submit" title="Delete" class="btn btn-default btn-primary" style="float:right;" name="sdelbtn"><i class="glyphicon glyphicon-remove" style="color:white;"></i></button>
+																		<a href="admin_editstudent.php?editid=<?php echo $student_id?>" title="Edit <?php echo $student_id ?> information." class="btn btn-default btn-primary" style="" name="seditbtn"><i class="glyphicon glyphicon-pencil" style="color:white;"></i></a>
+																		
 																		
 																	</td>
 
@@ -250,19 +238,19 @@
 															
 															?>
 															 <tr>
-																<th>Relative</th>
-																<td>ID: <?php echo $relative_id ?></td>
-																<th>Name</th>
+																<th style="color:skyblue;"><i class="glyphicon glyphicon-menu-right " style="color:black;"></i><i class="glyphicon glyphicon-menu-right " style="color:black;"></i>Relative</th>
 																<td><?php echo $relative_name ?></td>
-																<th>Relation</th>
-																<td><?php echo $relative_relation ?></td>
-																<th>Address</th>
 																<td><?php echo $relative_address ?></td>
-																<th>H/P: <?php echo $relative_hp ?></th>
+																<th style="color:skyblue;">Relation</td>
+																<td><?php echo $relative_relation ?></td>
+																<td></td>
+																<th style="color:skyblue;">H/P:</th>
+																<td><?php echo $relative_hp ?></td>
+																<th></th>
 																<td>
-																	<input type="hidden" name="relative_id" value="<?php echo $relative_id; ?>">
+															
 																		
-																	<button type="submit" title="Edit" class="btn btn-default btn-primary" style="" name="reditbtn"><i class="glyphicon glyphicon-pencil" style="color:white;"></i></button>
+																	<button type="submit" title="Delete <?php echo $student_id ?> record." class="btn btn-default btn-primary" style="" name="sdelbtn"><i class="glyphicon glyphicon-remove" style="color:white;"></i></button>
 																	
 																
 																</td>
