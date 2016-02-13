@@ -23,6 +23,7 @@
 						mysql_query("insert into agreement (place_id, student_id, date_start, date_end) values ('$pid', '$student_id', '$wait_start', '$wait_end')");
 						mysql_query("update room set room_status = '$newstatus' where place_id = '$pid'");
 						mysql_query("update student set student_status = '$newstatus' where student_id = '$student_id'");
+						mysql_query("DELETE FROM waiting WHERE waiting_id='$wid'");
 			}
 ?>
 <html>
