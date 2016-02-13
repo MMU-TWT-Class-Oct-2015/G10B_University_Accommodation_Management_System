@@ -149,7 +149,7 @@ if(isset($_POST["addbtn"]))
               <ul class="nav navbar-nav side-nav">
 
                 <li class="active">
-                  <a href="admin_student.php"><i class="fa fa-fw fa-table"></i> Student</a>
+                  <a href="admin_student.php"><i class="fa fa-fw fa-table"></i> Add Course</a>
                 </li>
 
 
@@ -187,7 +187,7 @@ if(isset($_POST["addbtn"]))
                   <div class="form-group">
                     <table style="width:780px;">
                         <tr style="height:50px;">
-                          <th colspan="2" style="color:orange;text-align:center;">Course</th>
+                          <th colspan="2" style="color:orange;text-align:center;font-size:20px;">Course</th>
 
                         </tr>
                         <tr style="height:50px;">
@@ -212,7 +212,7 @@ if(isset($_POST["addbtn"]))
 
 
                     </table>
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" name="addbtn" value="Add">
+                    <input style="height:40px; width:80px; margin-top:10px; margin-left:700px;" class="btn btn-primary btn-block"  type="submit" name="addbtn" value="Add">
                   </div>
                 </div>
 
