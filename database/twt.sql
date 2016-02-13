@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2016 at 06:07 PM
+-- Generation Time: Feb 13, 2016 at 07:42 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -30,8 +30,8 @@ CREATE TABLE `agreement` (
   `lease_id` int(5) NOT NULL,
   `place_id` varchar(5) NOT NULL,
   `student_id` varchar(10) NOT NULL,
-  `date_start` varchar(10) NOT NULL,
-  `date_end` varchar(10) NOT NULL
+  `date_start` varchar(50) NOT NULL,
+  `date_end` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -52,6 +52,8 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`course_id`, `course_title`, `course_leader`, `department_name`) VALUES
+('BM', 'Business Management', 'Mr.Tan', 'Faculty Of Business'),
+('ITCN', 'Computer Networking', 'Dr. Diego Costa', 'Faculty of Information System'),
 ('ITSC', 'Security Technology', 'DR. Lim Eng Huat', 'Faculty of Information Science & Technology');
 
 -- --------------------------------------------------------
@@ -96,7 +98,8 @@ CREATE TABLE `relative` (
 --
 
 INSERT INTO `relative` (`relative_id`, `relative_name`, `relative_relation`, `relative_address`, `relative_hp`, `student_id`) VALUES
-(1, 'Ezio Tiu', 'Father', '15, Jalan Bobo, Taman Ina', '123456789', 1121116126);
+(1, 'Ezio Tiu', 'Father', '15, Jalan Bobo, Taman Ina', '123456789', 1121116126),
+(2, 'Hong Leong', 'Father', '16,Jalan xxx', '0123546987', 1121115859);
 
 -- --------------------------------------------------------
 
@@ -165,7 +168,8 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `student_name`, `student_address`, `student_dob`, `student_category`, `student_status`, `course_id`, `student_pass`, `student_hp`) VALUES
-(1121116126, 'Toures Tiu', '15, Jalan Emas, Taman Taktau', '2016-01-01', 'undergraduate', 'Pending', 'ITSC', '123456789', '0123456789');
+(1121115859, 'Leong Yoong Wah', '16,janlan kerjasame,taman Ayer Keroh', '2016-02-03', 'Postgraduate', 'None', 'ITCN', '123456789', '0121236547'),
+(1121116126, 'Toures Tiu', '15, Jalan Emas, Taman Taktau', '2016-01-01', 'Undergraduate', 'Pending', 'ITSC', '123456789', '0123456789');
 
 -- --------------------------------------------------------
 
@@ -253,7 +257,7 @@ ALTER TABLE `agreement`
 -- AUTO_INCREMENT for table `relative`
 --
 ALTER TABLE `relative`
-  MODIFY `relative_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `relative_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `waiting`
 --
