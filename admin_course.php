@@ -12,6 +12,19 @@
 		$staff_row = mysql_fetch_assoc($staff_result);
 
 	}
+	
+	if (isset($_POST['sdelbtn']))
+	{
+						$cid=$_POST["course_id"];
+						mysql_query("DELETE FROM course WHERE course_id='$cid'");
+						
+						?>
+						<script type="text/javascript">
+								window.alert('The selected course is Deleted.');
+						</script>
+					<?php
+		
+	}
 
 ?>
 <html>
@@ -70,7 +83,7 @@
 </head>
 
 <body>
-
+<form name="statusfrm" method="POST">
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -136,7 +149,7 @@
                     <div class="col-lg-12">
                         <h1 class="page-header" >
 													<br>
-                            View and edit student course
+                            Course
                         </h1>
 
 
@@ -152,47 +165,38 @@
                                     <table class="table table-bordered table-hover table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Student ID</th>
-                                                <th>Student Name</th>
+                                                <th>Course ID</th>
                                                 <th>Course Title</th>
-                                                <th>Change Course</th>
+                                                <th>Course Leader</th>
+                                                <th>Department Name</th>
+												<th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+
 											<?php
-												$student_detail = mysql_query("select * from student");
-
-												while ($student_row = mysql_fetch_array($student_detail))
+												$c_detail = mysql_query("select * from course");
+																								
+												while ($c_row = mysql_fetch_array($c_detail))
 												{
-														$student_id = $student_row['student_id'];
-														$student_name = $student_row['student_name'];
-                            $course_id = $student_row['course_id'];
-
-														?>
+														$course_id = $c_row['course_id'];
+														$course_title = $c_row['course_title'];
+														$course_leader = $c_row['course_leader'];
+														$department_name = $c_row['department_name'];
+                           
+											?>
 															<tr>
-																	<td><?php echo $student_id ?></td>
-																	<td><?php echo $student_name ?></td>
-                                  <td><?php echo $course_id ?></td>
-																	<td>
-                                    <select class="form-control" id="course" name="select_course">
-                                      	<option value="0" selected></option>;
-                                    <?php
-                                    $course_result = mysql_query("select * from course");
-
-
-                                      while ($course_row = mysql_fetch_array($course_result))
-                                      {
-
-                                          $course_id = $course_row['course_id'];
-                                          $course_title = $course_row['course_title'];
-
-                                          echo "<option value='$course_id' class='alert alert-success'>$course_title</option>";
-                                      }
-
-                                    ?>
-                                    </select>
-                                  </td>
-
+																	<td><?php echo $course_id ?></td>
+																	<td><?php echo $course_title ?></td>
+																	<td><?php echo $course_leader ?></td>
+																	<td><?php echo $department_name ?></td>
+																	
+																	<td style="text-align:center;">
+																	<input type="hidden" name="course_id" value="<?php echo $course_id; ?>">
+																	<a href="admin_editcourse.php?editid=<?php echo $course_id?>" title="Edit <?php echo $course_id ?> information." class="btn btn-default btn-primary" style="" name="seditbtn"><i class="glyphicon glyphicon-pencil" style="color:white;"></i></a>
+																	<button type="submit" title="Delete <?php echo $course_id ?> record." class="btn btn-default btn-primary" style="" name="sdelbtn"><i class="glyphicon glyphicon-remove" style="color:white;"></i></button>
+																	
+																	</td>
 															</tr>
 														<?php
 												}
@@ -203,7 +207,7 @@
                                         </tbody>
 
                                     </table>
-                                    <input class="btn btn-lg btn-success" type="submit" value="change" name="cobtn" onclick="edit()">
+                                    <a href="admin_addcourse.php" class="btn btn-lg btn-success">Add Course</a>
                                 </div>
 
 
