@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2016 at 02:47 PM
+-- Generation Time: Feb 13, 2016 at 06:07 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -30,8 +30,8 @@ CREATE TABLE `agreement` (
   `lease_id` int(5) NOT NULL,
   `place_id` varchar(5) NOT NULL,
   `student_id` varchar(10) NOT NULL,
-  `date_start` varchar(50) NOT NULL,
-  `date_end` varchar(50) NOT NULL
+  `date_start` varchar(10) NOT NULL,
+  `date_end` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -52,9 +52,7 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`course_id`, `course_title`, `course_leader`, `department_name`) VALUES
-('ITCN', 'Computer Networking', 'Dr. Diego Costa', 'Faculty of Information Science & Technology'),
-('ITMIS', 'Management in Information System', 'Dr. Jose Mourinho', 'Faculty of Information Science & Technology'),
-('ITST', 'Security Technology', 'DR. Lim Eng Huat', 'Faculty of Information Science & Technology');
+('ITSC', 'Security Technology', 'DR. Lim Eng Huat', 'Faculty of Information Science & Technology');
 
 -- --------------------------------------------------------
 
@@ -119,10 +117,10 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`place_id`, `room_num`, `room_rent`, `hall_id`, `room_status`) VALUES
-('P0001', 15, 200, 'H0001', 'none'),
-('P0002', 16, 200, 'H0001', 'none'),
-('P0003', 30, 200, 'H0002', 'none'),
-('P0004', 31, 200, 'H0002', 'none');
+('P0001', 15, 200, 'H0001', 'Pending'),
+('P0002', 16, 200, 'H0001', 'None'),
+('P0003', 30, 200, 'H0002', 'None'),
+('P0004', 31, 200, 'H0002', 'None');
 
 -- --------------------------------------------------------
 
@@ -167,7 +165,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `student_name`, `student_address`, `student_dob`, `student_category`, `student_status`, `course_id`, `student_pass`, `student_hp`) VALUES
-(1121116126, 'Toures Tiu', '15, Jalan Emas, Taman Taktau', '2016-01-01', 'undergraduate', 'none', 'ITST', '123456789', '0123456789');
+(1121116126, 'Toures Tiu', '15, Jalan Emas, Taman Taktau', '2016-01-01', 'undergraduate', 'Pending', 'ITSC', '123456789', '0123456789');
 
 -- --------------------------------------------------------
 
@@ -177,11 +175,18 @@ INSERT INTO `student` (`student_id`, `student_name`, `student_address`, `student
 
 CREATE TABLE `waiting` (
   `waiting_id` int(5) NOT NULL,
-  `place_id` varchar(5) NOT NULL,
+  `place_id` varchar(10) NOT NULL,
   `student_id` varchar(10) NOT NULL,
   `wait_start` varchar(50) NOT NULL,
   `wait_end` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `waiting`
+--
+
+INSERT INTO `waiting` (`waiting_id`, `place_id`, `student_id`, `wait_start`, `wait_end`) VALUES
+(1, 'P0001', '1121116126', '15/16 Semester 1', '15/16 Semester 2');
 
 --
 -- Indexes for dumped tables
@@ -253,7 +258,7 @@ ALTER TABLE `relative`
 -- AUTO_INCREMENT for table `waiting`
 --
 ALTER TABLE `waiting`
-  MODIFY `waiting_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `waiting_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

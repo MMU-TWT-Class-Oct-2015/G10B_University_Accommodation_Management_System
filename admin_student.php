@@ -20,7 +20,7 @@
 						mysql_query("DELETE FROM relative WHERE student_id='$sid'");
 						?>
 						<script type="text/javascript">
-								window.alert('Deleted');
+								window.alert('The selected student is Deleted.');
 						</script>
 					<?php
 						
@@ -210,7 +210,7 @@
 														?>
 															<tr>
 															
-																	<td><?php echo $student_id ?></td>
+																	<td rowspan="2"><?php echo $student_id ?></td>
 																	<td><?php echo $student_name ?></td>
 																	<td><?php echo $student_address ?></td>
 																	<td><?php echo $student_dob ?></td>
@@ -219,12 +219,12 @@
 																	<td><?php echo $course_id ?></td>
 																	<td><?php echo $student_hp ?></td>
 																	<td><?php echo $student_pass ?></td>
-																	<td>
+																	<td rowspan="2" >
 																		
 																		<input type="hidden" name="student_id" value="<?php echo $student_id; ?>">
-																		
 																		<a href="admin_editstudent.php?editid=<?php echo $student_id?>" title="Edit <?php echo $student_id ?> information." class="btn btn-default btn-primary" style="" name="seditbtn"><i class="glyphicon glyphicon-pencil" style="color:white;"></i></a>
-																		
+																		<button type="submit" title="Delete <?php echo $student_id ?> record." class="btn btn-default btn-primary" style="" name="sdelbtn"><i class="glyphicon glyphicon-remove" style="color:white;"></i></button>
+										
 																		
 																	</td>
 
@@ -238,22 +238,15 @@
 															
 															?>
 															 <tr>
-																<th style="color:skyblue;"><i class="glyphicon glyphicon-menu-right " style="color:black;"></i><i class="glyphicon glyphicon-menu-right " style="color:black;"></i>Relative</th>
 																<td><?php echo $relative_name ?></td>
 																<td><?php echo $relative_address ?></td>
 																<th style="color:skyblue;">Relation</td>
 																<td><?php echo $relative_relation ?></td>
-																<td></td>
-																<th style="color:skyblue;">H/P:</th>
-																<td><?php echo $relative_hp ?></td>
-																<th></th>
-																<td>
-															
-																		
-																	<button type="submit" title="Delete <?php echo $student_id ?> record." class="btn btn-default btn-primary" style="" name="sdelbtn"><i class="glyphicon glyphicon-remove" style="color:white;"></i></button>
-																	
 																
-																</td>
+																<th style="color:skyblue;">H/P:</th>
+																<td colspan="2"><?php echo $relative_hp ?></td>
+																<th style="color:skyblue;"><i class="glyphicon glyphicon-arrow-left" style="color:black;"></i> Relative</th>
+																
 															</tr>
 															
 															
