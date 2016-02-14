@@ -12,19 +12,19 @@
 		$staff_row = mysql_fetch_assoc($staff_result);
 
 	}
-	
-				
-						
-						
-				
+
+
+
+
+
 				if(isset($_POST["addbtn"]))
 				{
-						
+
 						$nrelative_name = $_POST['relative_name'];
 						$nrelative_relation = $_POST['relative_relation'];
 						$nrelative_address = $_POST['relative_address'];
 						$nrelative_hp = $_POST['relative_hp'];
-						
+
 						$nstudent_id = $_POST['student_id'];
 						$nstudent_name = $_POST['student_name'];
 						$nstudent_address = $_POST['student_address'];
@@ -33,9 +33,9 @@
 						$nstudent_status = "None";
 						$ncourse_id = $_POST['course_id'];
 						$nstudent_hp = $_POST['student_hp'];
-						$nstudent_pass = $_POST['student_pass'];
-						
-						
+						$nstudent_pass = md5($_POST['student_pass']);
+
+
 						$sidresult=mysql_query("select * from student where student_id='$nstudent_id'");
 						if(empty($nstudent_id) || empty($nstudent_name)|| empty($nstudent_pass))
 						{
@@ -43,11 +43,11 @@
 									<script type="text/javascript">
 										alert("Please fill in Passowrd, ID and Name.");
 									</script>
-									
+
 							<?php
 						}
 						else if((mysql_num_rows($sidresult)!=0))
-						{	
+						{
 							?>
 							<script type="text/javascript">
 								alert("The student ID is exist.");
@@ -66,8 +66,8 @@
 												alert("Record Added.");
 												window.location.href='admin_student.php';
 												</script>
-									<?php	
-						
+									<?php
+
 						}
 				}
 ?>
@@ -157,11 +157,11 @@
                 </ul>
 
             </div>
-			
+
 							 <div class="collapse navbar-collapse navbar-ex1-collapse">
 
 								<ul class="nav navbar-nav side-nav">
-									
+
 									<li class="active">
 										<a href="admin_student.php"><i class="fa fa-fw fa-table"></i> Student</a>
 									</li>
@@ -182,7 +182,7 @@
 									<div class="col-lg-12">
 										<h1 class="page-header">
 																	<br>
-											Add New Student 
+											Add New Student
 										</h1>
 
 									</div>
@@ -191,13 +191,13 @@
 
 								<div class="alert alert-info">
 									<strong>Please fill up all the information.</strong>
-									
+
 								</div>
 
 
 								<div class="row" style="width:800px;margin-left:auto;margin-right:auto;">
 									<div class="col-lg-12">
-										
+
 										<div class="form-group">
 											<table style="width:780px;">
 													<tr style="height:50px;">
@@ -221,49 +221,49 @@
 														<td><input class="form-control" placeholder="" name="student_address" type="text" value=""></td>
 														<th style="color:skyblue;text-align:center;">Address</th>
 														<td><input class="form-control" placeholder="" name="relative_address" type="text" value=""></td>
-													
+
 													</tr>
 													<tr style="height:50px;">
 														<th style="color:skyblue;text-align:center;">Date of Birth</th>
 														<td><input class="form-control" placeholder="" name="student_dob" type="text" value=""></td>
 														<th style="color:skyblue;text-align:center;">H/P:</th>
 														<td><input class="form-control" placeholder="" name="relative_hp" type="text" value=""></td>
-																
+
 													</tr>
-										
+
 													<tr style="height:50px;">
-														
+
 														<th style="color:skyblue;text-align:center;">Category</th>
 														<td>
-														
+
 															<select class="form-control" id="sct" name="student_category">
-																	
+
 																	<option value="Undergraduate">Undergraduate</option>
 																	<option value="Postgraduate">Postgraduate</option>
-											
+
 															</select>
 														</td>
 														<th></th>
-														<td></td>		
+														<td></td>
 													</tr>
 													<tr style="height:50px;">
 														<th style="color:skyblue;text-align:center;">Status</th>
 														<td>None</td>
 														<th></th>
-														<td></td>		
+														<td></td>
 													</tr>
 													<tr style="height:50px;">
 														<th style="color:skyblue;text-align:center;">Course</th>
 														<td>
-														
+
 															<select class="form-control" id="scid" name="course_id">
-																
+
 															<?php
 																$course_result = mysql_query("select * from course");
 																while ($course_row = mysql_fetch_array($course_result))
 																{
 																		$course_id = $course_row['course_id'];
-																		
+
 
 																		echo "<option value='$course_id'>$course_id</option>";
 																}
@@ -272,19 +272,19 @@
 															</select>
 														</td>
 														<th></th>
-														<td></td>		
+														<td></td>
 													</tr>
 													<tr style="height:50px;">
 														<th style="color:skyblue;text-align:center;">H/P</th>
 														<td><input class="form-control" placeholder="" name="student_hp" type="text" value=""></td>
 														<th></th>
-														<td></td>		
+														<td></td>
 													</tr>
 													<tr style="height:50px;">
 														<th style="color:skyblue;text-align:center;">Password</th>
-														<td><input class="form-control" placeholder="" name="student_pass" type="text" value=""></td>
+														<td><input class="form-control" placeholder="" name="student_pass" type="password" value=""></td>
 														<th></th>
-														<td></td>		
+														<td></td>
 													</tr>
 											</table>
 											<input class="btn btn-lg btn-primary btn-block" type="submit" name="addbtn" value="Add">
@@ -298,7 +298,7 @@
 
 			</div>
 			<!-- /#page-wrapper -->
-            
+
 	</form>
     </div>
     <!-- /#wrapper -->
