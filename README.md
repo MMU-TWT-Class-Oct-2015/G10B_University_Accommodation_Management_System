@@ -27,3 +27,7 @@ The University Accommodation Management System is introduced as a computerized s
 **Conclusion**
 
 University Accommodation Management System will be able to address problems encountered by students and admins within the old paper-based systems. The proposed system is to find optimal matching for student’s requirements, and administration of the office. System implementation will be carried out using HTML5, CSS, PHP, MySQL, Apache and etc. which are the open source applications. 
+
+**Step 1**
+
+![Image of Step 1](https://cloud.githubusercontent.com/assets/16029016/13034850/18815796-d37c-11e5-93dc-88c876dcebbc.jpg)
