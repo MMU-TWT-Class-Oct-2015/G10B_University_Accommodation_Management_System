@@ -28,6 +28,7 @@ The University Accommodation Management System is introduced as a computerized s
 
 University Accommodation Management System will be able to address problems encountered by students and admins within the old paper-based systems. The proposed system is to find optimal matching for student’s requirements, and administration of the office. System implementation will be carried out using HTML5, CSS, PHP, MySQL, Apache and etc. which are the open source applications. 
 
+**How to get started**
 **Step 1**
 
 ![Image of Step 1](https://cloud.githubusercontent.com/assets/16029016/13034850/18815796-d37c-11e5-93dc-88c876dcebbc.jpg)<br>
@@ -87,3 +88,36 @@ and go to brower and open the link address<br>
 
 ![Image of Step 12](https://cloud.githubusercontent.com/assets/16029016/13034853/18a8909a-d37c-11e5-86e3-a63741bdc1ed.jpg)<br>
 now you are successfully access our system!<br>
+
+**Client**
+**Index page**
+![Image of Index](https://cloud.githubusercontent.com/assets/16029015/13035897/0e767f56-d395-11e5-8ba0-9c173fc4c21b.PNG)<br>
+This is the index page of the system. Student can logout and view their own name at the top navigation bar there. 
+
+**Check Room Status page**
+![Image of Check Room status](https://cloud.githubusercontent.com/assets/16029015/13035912/1f6a8096-d395-11e5-8dd4-645b398c6c3f.PNG)<br>
+This is the check room status page for the student after finish their booking by clicking the green button "Check Booking Status" from index page. 
+
+**Student information bar**
+![Image of Student information bar](https://cloud.githubusercontent.com/assets/16029015/13035900/122d9e72-d395-11e5-94fc-8ed2eba03608.PNG)<br>
+Student can view their own personal detail. And also student can update their own profile by clicking the edit button.
+
+**Update information**
+![Image of update information](https://cloud.githubusercontent.com/assets/16029015/13035901/13dc4408-d395-11e5-9529-eb763762deeb.PNG)<br>
+After student click the edit button from the student information bar, it will pop out this from for student update their own information.
+
+**Rent a Room Step 1**
+![Image of Rent a Room Step 1](https://cloud.githubusercontent.com/assets/16029015/13035904/154d0174-d395-11e5-8735-8c21465e0e79.PNG)<br>
+A small guildline for rent a room. To continue by clicking the button.
+
+**Rent a Room Step 2**
+![Image of Rent a Room Step 2](https://cloud.githubusercontent.com/assets/16029015/13035905/178195fe-d395-11e5-8d97-01463eaef412.PNG)<br>
+At this page, student can pick the hall they want.
+
+**Rent a Room Step 3**
+![Image of Rent a Room Step 3](https://cloud.githubusercontent.com/assets/16029015/13035910/19f26340-d395-11e5-9d2f-6a4ea7ad7855.PNG)<br>
+Here will show the student selected hall detail.
+
+**Rent a Room Step 4**
+![Image of Rent a Room Step 4](https://cloud.githubusercontent.com/assets/16029015/13035911/1d09488c-d395-11e5-8710-58009e385607.PNG)<br>
+At this page, student need to choose the period they want to rent. After clicking the "Book" button, the room will in the pending list. After admin approve the pending room request, the student are success to rent a room. Student may check the status at check status page. 
