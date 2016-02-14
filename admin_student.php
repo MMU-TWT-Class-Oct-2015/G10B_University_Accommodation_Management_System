@@ -14,7 +14,7 @@
 	}
 			if(isset($_POST["student_id"]))
 			{
-						
+
 						$sid=$_POST["student_id"];
 						mysql_query("DELETE FROM student WHERE student_id='$sid'");
 						mysql_query("DELETE FROM relative WHERE student_id='$sid'");
@@ -23,9 +23,9 @@
 								window.alert('The selected student is Deleted.');
 						</script>
 					<?php
-						
+
 			}
-			
+
 ?>
 <html>
 
@@ -130,7 +130,7 @@
                         <a href="admin_course.php"><i class="fa fa-fw fa-table"></i> Course</a>
                     </li>
 					<li class="active">
-                        <a href="admin_student.php"><i class="fa fa-fw fa-table"></i> Student</a>
+                        <a href="admin_student.php"><i class="fa fa-fw fa-table"></i>Student</a>
                     </li>
 
 
@@ -169,21 +169,22 @@
                             <table class="table table-bordered table-hover" style="text-align:center;">
                                 <thead>
                                     <tr style="color:skyblue;">
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Address</th>
-										<th>Date of Birth</th>
-										<th>Category</th>
-                                        <th>Status</th>
-										<th>Course</th>
-										<th>H/P</th>
-										<th>Password</th>
-										<th>Action</th>
+                                        <th style="text-align:center;">Student ID</th>
+																				<th style="color:	#E00000  ">Information</th>
+                                        <th style="text-align:center;">Name</th>
+                                        <th style="text-align:center;">Address</th>
+										<th style="text-align:center;">Date of Birth</th>
+										<th style="text-align:center;">Category/Relation</th>
+                                        <th style="text-align:center;">Status</th>
+										<th style="text-align:center;">Course</th>
+										<th style="text-align:center;">H/P</th>
+
+										<th style="text-align:center;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-								<?php	
-									
+								<?php
+
 										$student_result = mysql_query("select * from student,relative where relative.student_id=student.student_id");
 										if(mysql_num_rows($student_result)== 0)
 										{
@@ -194,8 +195,8 @@
 										else
 										{
 										while ($student_row = mysql_fetch_array($student_result))
-													{	
-														
+													{
+
 														$student_id = $student_row['student_id'];
 														$student_name = $student_row['student_name'];
 														$student_address = $student_row['student_address'];
@@ -205,12 +206,13 @@
 														$course_id = $student_row['course_id'];
 														$student_hp = $student_row['student_hp'];
 														$student_pass = $student_row['student_pass'];
-														
-														
+
+
 														?>
 															<tr>
-															
-																	<td rowspan="2"><?php echo $student_id ?></td>
+
+																	<td rowspan="2" style="vertical-align:middle"><?php echo $student_id ?></td>
+																	<th style="color:#E00000  ;"> Student <i class="glyphicon glyphicon-arrow-right" style="color:black;"></i></th>
 																	<td><?php echo $student_name ?></td>
 																	<td><?php echo $student_address ?></td>
 																	<td><?php echo $student_dob ?></td>
@@ -218,38 +220,40 @@
 																	<td><?php echo $student_status ?></td>
 																	<td><?php echo $course_id ?></td>
 																	<td><?php echo $student_hp ?></td>
-																	<td><?php echo $student_pass ?></td>
-																	<td rowspan="2" >
-																		
+
+																	<td rowspan="2" style="vertical-align:middle">
+
 																		<input type="hidden" name="student_id" value="<?php echo $student_id; ?>">
 																		<a href="admin_editstudent.php?editid=<?php echo $student_id?>" title="Edit <?php echo $student_id ?> information." class="btn btn-default btn-primary" style="" name="seditbtn"><i class="glyphicon glyphicon-pencil" style="color:white;"></i></a>
 																		<button type="submit" title="Delete <?php echo $student_id ?> record." class="btn btn-default btn-primary" style="" name="sdelbtn"><i class="glyphicon glyphicon-remove" style="color:white;"></i></button>
-										
-																		
+
+
 																	</td>
 
 															</tr>
-															<?php 
+															<?php
 																$relative_id = $student_row['relative_id'];
 																$relative_name = $student_row['relative_name'];
 																$relative_relation = $student_row['relative_relation'];
 																$relative_address = $student_row['relative_address'];
 																$relative_hp = $student_row['relative_hp'];
-															
+
 															?>
 															 <tr>
+																 <th style="color:#E00000  ;"> Relative <i class="glyphicon glyphicon-arrow-right" style="color:black;"></i></th>
 																<td><?php echo $relative_name ?></td>
 																<td><?php echo $relative_address ?></td>
-																<th style="color:skyblue;">Relation</td>
+																<td>-</td>
 																<td><?php echo $relative_relation ?></td>
-																
-																<th style="color:skyblue;">H/P:</th>
-																<td colspan="2"><?php echo $relative_hp ?></td>
-																<th style="color:skyblue;"><i class="glyphicon glyphicon-arrow-left" style="color:black;"></i> Relative</th>
-																
+
+																<td>-</td>
+																<td>-</td>
+																<td ><?php echo $relative_hp ?></td>
+
+
 															</tr>
-															
-															
+
+
 														<?php
 													}
 										}
@@ -277,7 +281,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-	
+
 
 </body>
 
