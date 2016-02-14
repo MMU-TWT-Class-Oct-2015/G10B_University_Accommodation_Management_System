@@ -381,7 +381,29 @@
 				
 				<div class="col-sm-4" style="margin-top:10px;">
 				<h3><b>Please select a Hall</b></h3>
-				<form method="POST" action="room.php">
+				<?php
+					
+					if(isset($_POST['btn_hall']))
+					{		
+						$hallid1=$_POST['hall'];
+						$_SESSION['hid']=$hallid1;
+						
+						if(0<mysql_num_rows(mysql_query("select * from room where hall_id='$hallid1' and room_status='None'")))
+						{
+							header('Location: room.php');
+						}
+						else
+						{
+				?>
+						<div class="alert alert-danger" style="width:730px;">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												<i class="fa fa-exclamation-triangle"></i> The hall is full!
+											</div>
+				<?php
+						}
+					}
+				?>
+				<form method="POST">
 				<table style="width:730px;">
 				<tr>
 				<td><div class="panel panel-info" style="padding:5px;margin-top:20px;">
@@ -393,6 +415,7 @@
 													{
 														$hall_id = $hall_row['hall_id'];
 														$hall_name = $hall_row['hall_name'];
+														
 														echo "<option value='$hall_id'>$hall_name</option>";
 													}
 												?>
