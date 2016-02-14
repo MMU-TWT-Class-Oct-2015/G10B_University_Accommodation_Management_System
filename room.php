@@ -387,9 +387,9 @@
 				<form method="POST">
 				<table style="width:730px;">
 				<tr>
-				<td><div class="panel panel-info" style="padding:5px;margin-top:20px;height:220px;">
+				<td><div class="panel panel-info" style="padding:5px;margin-top:20px;">
 					  <div class="panel-heading">
-												Room number : <select name="room">
+												Room number : <select name="room" class="form-control">
 												<?php
 													$room_result = mysql_query("select * from room where hall_id='$hallid'");
 													while ($room_row = mysql_fetch_array($room_result)) 
@@ -407,15 +407,17 @@
 												</select></div>		
 					  <div class="panel-body">
 					  <table>
-					  <tr>
-						<td>
-								Hall: <?php echo $hall_row["hall_name"]; ?><br/>
-								Address: <?php echo $hall_row["hall_address"]; ?><br/>
-								Manager: <?php echo $hall_row["hall_manager"]; ?><br/>
-								Contact Number: <?php echo $hall_row["hall_hp"]; ?><br/><br/>
-						</td>
-						</tr>
+					  
+								<tr height="30px"><td style="color:skyblue;">Hall </td><td> &nbsp;<?php echo $hall_row["hall_name"]; ?></td></tr>
+								<tr height="30px"><td td style="color:skyblue;">Address </td><td> &nbsp;<?php echo $hall_row["hall_address"]; ?></td></tr>
+								<tr height="30px"><td td style="color:skyblue;">Manager </td><td> &nbsp;<?php echo $hall_row["hall_manager"]; ?></td></tr>
+								<tr height="30px"><td td style="color:skyblue;">Contact Number </td><td> &nbsp;<?php echo $hall_row["hall_hp"]; ?></td></tr>
+								
+						
 						</table>
+						<div class="alert alert-info">
+									<strong>For know more detail, you may contact the hall manager <?php echo $hall_row["hall_manager"]; ?>.</strong>
+								</div>
 						<input class="btn btn-lg btn-warning btn-block" type="submit" name="btn_room" value="Book">
 					  </div>
 					</div>

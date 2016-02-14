@@ -384,10 +384,10 @@
 				<form method="POST" action="room.php">
 				<table style="width:730px;">
 				<tr>
-				<td><div class="panel panel-info" style="padding:5px;margin-top:20px;height:170px;">
+				<td><div class="panel panel-info" style="padding:5px;margin-top:20px;">
 					  <div class="panel-heading">
 												Hall name : 
-												<select name="hall">
+												<select name="hall" class="form-control">
 												<?php
 													while ($hall_row = mysql_fetch_array($hall_result)) 
 													{
@@ -396,12 +396,13 @@
 														echo "<option value='$hall_id'>$hall_name</option>";
 													}
 												?>
-												</select></div>		
+												</select>
+					</div>		
 					  <div class="panel-body">
-						<div>1. Choose your Hall </div>
+						<div >1. Choose your Hall </div>
 						<div style="padding-bottom:5px;">2. Click "Select"</div>	
-						
-						
+						<div><img src="img/hall.jpg" style="float:left;height:200px;width:300px;padding:5px;margin-left:40px;"></div>
+						<div><img src="img/hall2.jpg" style="float:left;height:200px;width:300px;padding:5px;"></div>
 						<input class="btn btn-lg btn-warning btn-block" type="submit" name="btn_hall" value="Select">
 					  </div>
 					</div>

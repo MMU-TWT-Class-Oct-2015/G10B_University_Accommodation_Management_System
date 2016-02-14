@@ -459,46 +459,44 @@
 				<form method="POST">
 				<table style="width:730px;">
 				<tr>
-				<td><div class="panel panel-info" style="padding:5px;margin-top:20px;height:350px;">
+				<td><div class="panel panel-info" style="padding:5px;margin-top:20px;">
 						<div class="panel-heading">
 						
 							Room detail
 						</div>
 					  <div class="panel-body">
 					  <table>
-					  <tr>
-						<td>
+					  
 								<?php 
 									$hallid = $room_row['hall_id'];
 									$hall_result = mysql_query("select * from hall where hall_id='$hallid'");
 									$hall_row = mysql_fetch_assoc($hall_result);
 								?>
-								Hall: <?php echo $hall_row["hall_name"]; ?><br>
-								Address: <?php echo $hall_row["hall_address"]; ?><br>
-								Manager: <?php echo $hall_row["hall_manager"]; ?><br>
-								Contact Number: <?php echo $hall_row["hall_hp"]; ?><br>
-								<br/>
-								Room number: <?php echo $room_row["room_num"]; ?><br>
-								Rental: RM <?php echo $room_row["room_rent"]; ?><br>
-								Start:&nbsp;<select name="date_start"><br>
+								<tr height="30px"><td style="color:skyblue;">Hall</td><td>&nbsp;<?php echo $hall_row["hall_name"]; ?></td></tr>
+								<tr height="30px"><td style="color:skyblue;">Address</td><td>&nbsp;<?php echo $hall_row["hall_address"]; ?></td></tr>
+								<tr height="30px"><td style="color:skyblue;">Manager</td><td>&nbsp;<?php echo $hall_row["hall_manager"]; ?></td></tr>
+								<tr height="30px"><td style="color:skyblue;">Contact Number</td><td>&nbsp;<?php echo $hall_row["hall_hp"]; ?></td></tr>
+								<tr height="30px"><td style="color:skyblue;">Room number</td><td>&nbsp;<?php echo $room_row["room_num"]; ?></td></tr>
+								<tr height="30px"><td style="color:skyblue;">Rental</td><td>&nbsp; RM <?php echo $room_row["room_rent"]; ?></td></tr>
+								<tr height="30px"><td style="color:skyblue;">Start</td><td>&nbsp;<select name="date_start">
 											<option value="1">15/16 Semester 1</option>
 											<option value="2">15/16 Semester 2</option>
 											<option value="3">15/16 Semester 3</option>
 											<option value="4">16/17 Semester 1</option>
 											<option value="5">16/17 Semester 2</option>
 											<option value="6">16/17 Semester 3</option>
-										</select><br>
-										&#126;<br>
-								End:&nbsp;&nbsp;<select name="date_end"><br>
+										</select>
+										</td></tr>
+								<tr><td colspan="2" style="text-align:center;"><i class="glyphicon glyphicon-chevron-down" style="color:black;"></i></td></tr>
+								<tr height="30px"><td style="color:skyblue;">End</td><td>&nbsp;<select name="date_end">
 											<option value="1">15/16 Semester 1</option>
 											<option value="2">15/16 Semester 2</option>
 											<option value="3">15/16 Semester 3</option>
 											<option value="4">16/17 Semester 1</option>
 											<option value="5">16/17 Semester 2</option>
 											<option value="6">16/17 Semester 3</option>
-										</select><br><br>
-						</td>
-						</tr>
+										</select>
+								</td></tr>
 						
 						</table>
 						<input class="btn btn-lg btn-warning btn-block" type="submit" name="btn_book" value="Book">
