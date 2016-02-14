@@ -92,11 +92,11 @@ body
 
 							if(isset($_POST['submit']))
 							{	$id=$_POST['id'];
-								$pass=$_POST['password'];
-								
+								$pass=md5($_POST['password']);
+
 								$check_student = mysql_query("select student_pass from student where student_id ='$id'");
 								$check_staff = mysql_query("select staff_pass from staff where staff ='$id'");
-								
+
 								if(empty($_POST['id']) || empty($_POST['password']))
 								{
 							?>
@@ -117,7 +117,7 @@ body
 								}
 								else if($check_staff != $pass)
 								{
-									?> 
+									?>
 										&nbsp;
 										<div class="alert alert-warning">
 											<strong>Warning!</strong> ID or Password does not match!
@@ -126,36 +126,36 @@ body
 								}
 								if(0<mysql_num_rows(mysql_query("select * from student where student_id='$id' AND student_pass='$pass'")))
 								{
-									
+
 									$query=mysql_query("select * from student where student_id='$id' AND student_pass='$pass'");
-									
-									
+
+
 									$rows = mysql_num_rows($query);
-									
-									if ($rows == 1) 
+
+									if ($rows == 1)
 									{
 										$_SESSION['id']=$id; // Initializing Session
-										header("location: index.php"); // Redirecting To Other Page	
+										header("location: index.php"); // Redirecting To Other Page
 									}
-									
+
 								}
 
 								else if(0<mysql_num_rows(mysql_query("select * from staff where staff_id='$id' AND staff_pass='$pass'")))
 								{
 									$adminquery=mysql_query("select * from staff where staff_id='$id' AND staff_pass='$pass'");
-									
+
 									$adminrows = mysql_num_rows($adminquery);
-									
-								if ($adminrows == 1) 
+
+								if ($adminrows == 1)
 								{
 									$_SESSION['id']=$id; // Initializing Session
 									header("location: admin_index.php"); // Redirecting To Other Page
 								}
-		
-	
+
+
 								}
 							}
-							
+
 
 ?>
 			    	</fieldset>
@@ -168,6 +168,3 @@ body
         </body>
 
 </html>
-
-
-
