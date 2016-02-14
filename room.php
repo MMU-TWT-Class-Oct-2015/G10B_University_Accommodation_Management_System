@@ -377,9 +377,12 @@
 				</div>
 				
 				<?php
-					$hallid=$_POST['hall'];
-					$hall_result = mysql_query("select * from hall where hall_id='$hallid'");
-					$hall_row = mysql_fetch_assoc($hall_result);
+					if(isset($_SESSION['hid']))
+					{
+						$hallid=$_SESSION['hid'];
+						$hall_result = mysql_query("select * from hall where hall_id='$hallid'");
+						$hall_row = mysql_fetch_assoc($hall_result);
+					}
 				?>
 				
 				<div class="col-sm-4" style="margin-top:10px;">
