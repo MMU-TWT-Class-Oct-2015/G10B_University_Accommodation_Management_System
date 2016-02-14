@@ -64,6 +64,42 @@
 
 							<?php
 						}
+						else if(is_numeric($nstudent_hp) == false)
+						{
+							?>
+									<script type="text/javascript">
+										alert("Please enter only numeric at student phone number. ");
+									</script>
+
+							<?php
+						}
+						else if(is_numeric($nrelative_hp) == false)
+						{
+							?>
+									<script type="text/javascript">
+										alert("Please enter only numeric at relative phone number. ");
+									</script>
+
+							<?php
+						}
+						else if(strlen($nstudent_name)<6)
+						{
+							?>
+									<script type="text/javascript">
+										alert("Please enter student full name. ");
+									</script>
+
+							<?php
+						}
+						else if(strlen($nrelative_name)<6)
+						{
+							?>
+									<script type="text/javascript">
+										alert("Please enter relative full name. ");
+									</script>
+
+							<?php
+						}
 						else
 						{
 									mysql_query("update student set student_name = '$nstudent_name',student_address = '$nstudent_address',student_dob = '$nstudent_dob',
@@ -227,14 +263,14 @@
 													</tr>
 													<tr style="height:50px;">
 														<th style="color:skyblue;text-align:center;">Address</th>
-														<td><input class="form-control" placeholder="" name="student_address" type="text" value="<?php echo $student_address ?>"></td>
+														<td><input class="form-control" placeholder="" pattern=".{15,}" title="minimum 15 character" name="student_address" type="text" value="<?php echo $student_address ?>"></td>
 														<th style="color:skyblue;text-align:center;">Address</th>
-														<td><input class="form-control" placeholder="" name="relative_address" type="text" value="<?php echo $relative_address ?>"></td>
+														<td><input class="form-control" placeholder="" pattern=".{15,}" title="minimum 15 character" name="relative_address" type="text" value="<?php echo $relative_address ?>"></td>
 
 													</tr>
 													<tr style="height:50px;">
 														<th style="color:skyblue;text-align:center;">Date of Birth</th>
-														<td><input class="form-control" placeholder="" name="student_dob" type="text" value="<?php echo $student_dob ?>"></td>
+														<td><input class="form-control" placeholder="" name="student_dob" type="date" value="<?php echo $student_dob ?>"></td>
 														<th style="color:skyblue;text-align:center;">H/P:</th>
 														<td><input class="form-control" placeholder="" name="relative_hp" type="text" value="<?php echo $relative_hp ?>"></td>
 
@@ -286,13 +322,13 @@
 													</tr>
 													<tr style="height:50px;">
 														<th style="color:skyblue;text-align:center;">H/P</th>
-														<td><input class="form-control" placeholder="" name="student_hp" type="text" value="<?php echo $student_hp ?>"></td>
+														<td><input class="form-control" placeholder="" pattern=".{9,}" title="minimum 9 number" name="student_hp" type="text" value="<?php echo $student_hp ?>"></td>
 														<th></th>
 														<td></td>
 													</tr>
 													<tr style="height:50px;">
 														<th style="color:skyblue;text-align:center;">Password</th>
-														<td><input class="form-control" placeholder="" name="student_pass" type="text" value="<?php echo $student_pass ?>"></td>
+														<td><input class="form-control" placeholder="" pattern=".{8,}" title="minimum 8 character" name="student_pass" type="password" value="<?php echo $student_pass ?>"></td>
 														<th></th>
 														<td></td>
 													</tr>
