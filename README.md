@@ -30,23 +30,60 @@ University Accommodation Management System will be able to address problems enco
 
 **Step 1**
 
-![Image of Step 1](https://cloud.githubusercontent.com/assets/16029016/13034850/18815796-d37c-11e5-93dc-88c876dcebbc.jpg)
-Open the XAMPP Control Panel.
+![Image of Step 1](https://cloud.githubusercontent.com/assets/16029016/13034850/18815796-d37c-11e5-93dc-88c876dcebbc.jpg)<br>
+Open the XAMPP Control Panel.<br>
 
-![Image of Step 2](https://cloud.githubusercontent.com/assets/16029016/13034851/188362d4-d37c-11e5-949e-e51d4d3ebb5f.jpg)
-Click on Apache MySQL Action's Start button.
+**Step 2**
 
-![Image of Step 3](https://cloud.githubusercontent.com/assets/16029016/13034849/187654ae-d37c-11e5-9972-268ee7bdd412.jpg)
-Copy the system file to (.../xampp/htdocs)
+![Image of Step 2](https://cloud.githubusercontent.com/assets/16029016/13034851/188362d4-d37c-11e5-949e-e51d4d3ebb5f.jpg)<br>
+Click on Apache MySQL Action's Start button.<br>
 
-![Image of Step 4](https://cloud.githubusercontent.com/assets/16029016/13034854/18ae787a-d37c-11e5-9f27-9af8b1b4e85e.jpg)
-Go to browser and open the link.
+**Step 3**
 
-![Image of Step 5](https://cloud.githubusercontent.com/assets/16029016/13034855/18b5b586-d37c-11e5-879a-c8acf7395c16.jpg)
-Click on phpMyAdmin
+![Image of Step 3](https://cloud.githubusercontent.com/assets/16029016/13034849/187654ae-d37c-11e5-9972-268ee7bdd412.jpg)<br>
+Copy the system file to (.../xampp/htdocs)<br>
 
-![Image of Step 5](https://cloud.githubusercontent.com/assets/16029016/13034856/18bdb7c2-d37c-11e5-9571-921edd62838c.jpg)
-Click on left side bar button 'New'
+**Step 4**
 
+![Image of Step 4](https://cloud.githubusercontent.com/assets/16029016/13034854/18ae787a-d37c-11e5-9f27-9af8b1b4e85e.jpg)<br>
+Go to browser and open the link address.<br>
 
+**Step 5**
 
+![Image of Step 5](https://cloud.githubusercontent.com/assets/16029016/13034855/18b5b586-d37c-11e5-879a-c8acf7395c16.jpg)<br>
+Click on phpMyAdmin<br>
+
+**Step 6**
+
+![Image of Step 6](https://cloud.githubusercontent.com/assets/16029016/13034856/18bdb7c2-d37c-11e5-9571-921edd62838c.jpg)<br>
+Click on left side bar button 'New'<br>
+
+**Step 7**
+
+![Image of Step 7](https://cloud.githubusercontent.com/assets/16029016/13034859/19422552-d37c-11e5-84be-4d7878263074.jpg)<br>
+Name the database as twt and click on Create<br>
+
+**Step 8**
+
+![Image of Step 8](https://cloud.githubusercontent.com/assets/16029016/13034860/19536de4-d37c-11e5-983b-5946a62b2fa2.jpg)<br>
+Click on import and Choose File<br>
+
+**Step 9**
+
+![Image of Step 9](https://cloud.githubusercontent.com/assets/16029016/13034857/18db5606-d37c-11e5-8283-a38e658def45.jpg)<br>
+and select the twt.sql (.../database/twt.sql)<br>
+
+**Step 10**
+
+![Image of Step 10](https://cloud.githubusercontent.com/assets/16029016/13034858/18e1e4b2-d37c-11e5-9117-e6c36a56ecb6.jpg)<br>
+and click the bottom button 'Go'<br>
+
+**Step 11**
+
+![Image of Step 11](https://cloud.githubusercontent.com/assets/16029016/13034852/188e51da-d37c-11e5-96f9-fc1117f5f608.jpg)<br>
+and go to brower and open the link address<br>
+
+**Step 12**
+
+![Image of Step 12](https://cloud.githubusercontent.com/assets/16029016/13034853/18a8909a-d37c-11e5-86e3-a63741bdc1ed.jpg)<br>
+now you are successfully access our system!<br>
