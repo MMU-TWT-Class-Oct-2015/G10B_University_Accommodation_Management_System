@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2016 at 07:42 PM
+-- Generation Time: Feb 14, 2016 at 06:34 AM
 -- Server version: 10.1.9-MariaDB
--- PHP Version: 5.6.15
+-- PHP Version: 5.5.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -99,7 +99,8 @@ CREATE TABLE `relative` (
 
 INSERT INTO `relative` (`relative_id`, `relative_name`, `relative_relation`, `relative_address`, `relative_hp`, `student_id`) VALUES
 (1, 'Ezio Tiu', 'Father', '15, Jalan Bobo, Taman Ina', '123456789', 1121116126),
-(2, 'Hong Leong', 'Father', '16,Jalan xxx', '0123546987', 1121115859);
+(2, 'Hong Leong', 'Father', '16,Jalan xxx', '0123546987', 1121115859),
+(7, 'Lee', 'father', '', '016-5689853', 1121116035);
 
 -- --------------------------------------------------------
 
@@ -120,10 +121,10 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`place_id`, `room_num`, `room_rent`, `hall_id`, `room_status`) VALUES
-('P0001', 15, 200, 'H0001', 'Pending'),
+('P0001', 15, 200, 'H0001', 'None'),
 ('P0002', 16, 200, 'H0001', 'None'),
-('P0003', 30, 200, 'H0002', 'None'),
-('P0004', 31, 200, 'H0002', 'None');
+('P0003', 30, 200, 'H0002', 'Rented'),
+('P0004', 31, 200, 'H0002', 'Rented');
 
 -- --------------------------------------------------------
 
@@ -143,7 +144,7 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_role`, `staff_pass`) VALUES
-(1121116666, 'Harry Kane', 'Admin', '123456789');
+(1121116666, 'Harry Kane', 'Admin', '25f9e794323b453885f5181f1b624d0b');
 
 -- --------------------------------------------------------
 
@@ -168,8 +169,9 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `student_name`, `student_address`, `student_dob`, `student_category`, `student_status`, `course_id`, `student_pass`, `student_hp`) VALUES
-(1121115859, 'Leong Yoong Wah', '16,janlan kerjasame,taman Ayer Keroh', '2016-02-03', 'Postgraduate', 'None', 'ITCN', '123456789', '0121236547'),
-(1121116126, 'Toures Tiu', '15, Jalan Emas, Taman Taktau', '2016-01-01', 'Undergraduate', 'Pending', 'ITSC', '123456789', '0123456789');
+(1121115859, 'Leong Yoong Wah', '16,janlan kerjasame,taman Ayer Keroh', '2016-02-03', 'Postgraduate', 'None', 'ITCN', '25f9e794323b453885f5181f1b624d0b', '0121236547'),
+(1121116035, 'Kevin Lee', 'dwadwad', '0000-00-00', 'Undergraduate', 'None', 'BM', '81dc9bdb52d04dc20036dbd8313ed055', '31231'),
+(1121116126, 'Toures Tiu', '15, Jalan Emas, Taman Taktau', '2016-01-01', 'Undergraduate', 'None', 'ITSC', '25f9e794323b453885f5181f1b624d0b', '0123456789');
 
 -- --------------------------------------------------------
 
@@ -184,13 +186,6 @@ CREATE TABLE `waiting` (
   `wait_start` varchar(50) NOT NULL,
   `wait_end` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `waiting`
---
-
-INSERT INTO `waiting` (`waiting_id`, `place_id`, `student_id`, `wait_start`, `wait_end`) VALUES
-(1, 'P0001', '1121116126', '15/16 Semester 1', '15/16 Semester 2');
 
 --
 -- Indexes for dumped tables
@@ -252,12 +247,12 @@ ALTER TABLE `waiting`
 -- AUTO_INCREMENT for table `agreement`
 --
 ALTER TABLE `agreement`
-  MODIFY `lease_id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `lease_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `relative`
 --
 ALTER TABLE `relative`
-  MODIFY `relative_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `relative_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `waiting`
 --
