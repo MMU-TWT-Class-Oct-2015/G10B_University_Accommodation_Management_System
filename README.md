@@ -121,3 +121,60 @@ Here will show the student selected hall detail.
 **Rent a Room Step 4**
 ![Image of Rent a Room Step 4](https://cloud.githubusercontent.com/assets/16029015/13035911/1d09488c-d395-11e5-8710-58009e385607.PNG)<br>
 At this page, student need to choose the period they want to rent. After clicking the "Book" button, the room will in the pending list. After admin approve the pending room request, the student are success to rent a room. Student may check the status at check status page. 
+
+***Admin Site***
+**Admin Login**
+![Image of Admin Log in] (https://cloud.githubusercontent.com/assets/16029016/13034853/18a8909a-d37c-11e5-86e3-a63741bdc1ed.jpg)
+<br>
+This page you can see admin Login, admin login page was same page as student login, we do have a function which detect wherther the login id was admin or student.
+
+**View Hall and Room Status**
+![Image of View Hall and Room Status 1] (https://cloud.githubusercontent.com/assets/16029012/13039080/e58e8a5c-d3d5-11e5-9ef7-c4359f7bce80.png)
+<br>
+This page let admin select hall which he prefer to view.
+
+**View Hall and Room Status**
+![Image of View Hall and Room Status 2] (https://cloud.githubusercontent.com/assets/16029012/13039093/053b84b8-d3d6-11e5-8c3e-d39c9fd82cb4.png)
+<br>
+After select the hall admin are now able to view room list of the selected hall.
+
+**Pending Room**
+![Image of Pending Room] (https://cloud.githubusercontent.com/assets/16029012/13039128/5f5592d6-d3d6-11e5-8083-ca9ab2291c39.png)
+<br>
+When student book a room, admin will able to check it at this page, admin also can confirm the status to rented, once MMU finance department had received the deposit.
+
+**Room Check out**
+![Image of Room Check Out] (https://cloud.githubusercontent.com/assets/16029012/13039144/735e0466-d3d6-11e5-8af7-f5e6e74f12fa.png)
+<br>
+All rented room will shown here, and admin can preform room check out action which will change the room status to none, once the student don want continue to rent the room; and other new student may book thee room.
+
+**View Course**
+![Image of View Course] (https://cloud.githubusercontent.com/assets/16029012/13039153/86827036-d3d6-11e5-87af-d2c0d5819f36.png)
+<br>
+Admin may view the list of the course in this page.
+
+**Add Course**
+![Image of Add Course] (https://cloud.githubusercontent.com/assets/16029012/13039384/24cc1696-d3d9-11e5-82fe-e78e99350dfa.png)
+<br>
+Admin able to add new course into the system.
+
+**Edit Course**
+![Image of Edit Course] (https://cloud.githubusercontent.com/assets/16029012/13039172/c7650172-d3d6-11e5-8ca3-9b18a3b9ee88.png)
+<br>
+Admin able to Edit or Update Course Profile.
+
+**View Student**
+![Image of View Student] (https://cloud.githubusercontent.com/assets/16029012/13039191/eb08f3f4-d3d6-11e5-9e17-a05223d6b395.png)
+<br>
+Admin able to view student list.
+
+**Add Student**
+![Image of Add Student] (https://cloud.githubusercontent.com/assets/16029012/13039211/32f53c90-d3d7-11e5-9015-04405c2cae1d.png)
+<br>
+Admin able to add student.
+
+**Edit Student**
+![Image of Edit Student] (https://cloud.githubusercontent.com/assets/16029012/13039220/5164867c-d3d7-11e5-9ef9-fa5531a0b0a4.png)
+<br>
+Admin able to edit or update student profile.
+
