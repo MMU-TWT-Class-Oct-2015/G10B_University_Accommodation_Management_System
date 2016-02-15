@@ -129,14 +129,29 @@ At this page, student need to choose the period they want to rent. After clickin
 This page you can see admin Login, admin login page was same page as student login, we do have a function which detect wherther the login id was admin or student.
 
 **Hall and Room**
-![Image of View Hall and Room Status 1] (https://cloud.githubusercontent.com/assets/16029012/13040142/752ed628-d3e3-11e5-8604-f477f7072e51.png)
+![Image of View Hall and Room Status 1] (https://cloud.githubusercontent.com/assets/16029012/13040192/e3fa53b6-d3e3-11e5-9861-af4b432addd3.png)
 <br>
-This page let admin select hall which he prefer to view.
+This page let admin select hall which he prefer to view. There also contain add hall button in this page.
+
+**Add Hall**
+![Image of Add Hall] (https://cloud.githubusercontent.com/assets/16029012/13040204/2f7dbee0-d3e4-11e5-8f16-957164ed72dc.png)
+<br>
+This page let admin to add hall.
 
 **View Hall and Room Status**
 ![Image of View Hall and Room Status 2] (https://cloud.githubusercontent.com/assets/16029012/13039093/053b84b8-d3d6-11e5-8c3e-d39c9fd82cb4.png)
 <br>
-After select the hall admin are now able to view room list of the selected hall.
+After select the hall admin are now able to view room list of the selected hall. There also contain add and edit room button in this page.
+
+**Add Room**
+![Image of Add Hall] (https://cloud.githubusercontent.com/assets/16029012/13040228/6ddb34e2-d3e4-11e5-8005-7dd40db98225.png)
+<br>
+This page let admin to add room.
+
+**Edit Room**
+![Image of Add Hall] (https://cloud.githubusercontent.com/assets/16029012/13040242/9175171a-d3e4-11e5-87e0-cba8d623b8dd.png)
+<br>
+This page let admin to edit room.
 
 **Pending Room**
 ![Image of Pending Room] (https://cloud.githubusercontent.com/assets/16029012/13039128/5f5592d6-d3d6-11e5-8083-ca9ab2291c39.png)
