@@ -129,7 +129,7 @@ At this page, student need to choose the period they want to rent. After clickin
 This page you can see admin Login, admin login page was same page as student login, we do have a function which detect wherther the login id was admin or student.
 
 **Hall and Room**
-![Image of View Hall and Room Status 1] ((https://cloud.githubusercontent.com/assets/16029012/13040142/752ed628-d3e3-11e5-8604-f477f7072e51.png)
+![Image of View Hall and Room Status 1] (https://cloud.githubusercontent.com/assets/16029012/13040142/752ed628-d3e3-11e5-8604-f477f7072e51.png)
 <br>
 This page let admin select hall which he prefer to view.
 
