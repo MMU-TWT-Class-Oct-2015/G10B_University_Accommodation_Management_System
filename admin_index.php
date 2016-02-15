@@ -105,7 +105,7 @@
                 <ul class="nav navbar-nav side-nav">
 					<li class="active">
 
-                        <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> View Hall and Room Status</a>
+                        <a href="admin_index.php"><i class="fa fa-fw fa-table"></i>Hall and Room</a>
                     </li>
                     <li>
                         <a href="admin_pending.php"><i class="fa fa-fw fa-dashboard"></i> Pending Room</a>
@@ -117,7 +117,7 @@
                         <a href="admin_course.php"><i class="fa fa-fw fa-table"></i> Course</a>
                     </li>
 					<li>
-                        <a href="admin_student.php"><i class="fa fa-fw fa-table"></i> Student</a>
+                        <a href="admin_student.php"><i class="fa fa-fw fa-table"></i>Student</a>
                     </li>
 
 
@@ -136,12 +136,14 @@
                     <div class="col-lg-12">
                         <h1 class="page-header" >
 													<br>
-                            View Hall and Room Status
+                            Hall and Room
                         </h1>
                         <ol class="breadcrumb">
+													<a href="admin_addhall.php" class="btn btn-lg btn-primary btn-block">Add Hall</a>
                             <li class="active">
 
 									<label for="sel1">Please select a hall:  </label>
+
 
                             </li>
 							 <li class="active">
@@ -198,6 +200,7 @@
                                <input class="btn btn-lg btn-success btn-block" type="submit" value="Submit" name="subbtn">
                             </li>
                         </ol>
+
                     </div>
                 </div>
                 <!-- /.row -->
@@ -235,13 +238,14 @@
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
+                                    <table class="table table-bordered table-hover table-striped" style="text-align:center;">
                                         <thead>
                                             <tr>
-                                                <th>Place ID</th>
-                                                <th>Room Number</th>
-                                                <th>Room Rent</th>
-                                                <th>Room Status</th>
+                                                <th style="text-align:center;">Place ID</th>
+                                                <th style="text-align:center;">Room Number</th>
+                                                <th style="text-align:center;">Room Rent</th>
+                                                <th style="text-align:center;">Room Status</th>
+																								<th style="text-align:center;">Edit Room </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -267,13 +271,15 @@
 																		else
 																		{echo "<span>$room_status</span>"; }
 																	?></td>
+																	<td><a href="admin_editroom.php?editid=<?php echo $place_id?>" title="Edit <?php echo $place_id ?> information." class="btn btn-default btn-primary" style="" name="seditbtn"><i class="glyphicon glyphicon-pencil" style="color:white;"></i></a></td>
 															</tr>
 														<?php
 												}
 
 
 											?>
-
+<a href="admin_addroom.php" class="btn btn-lg btn-primary btn-block">Add room</a>
+<br>
                                         </tbody>
                                     </table>
                                 </div>
