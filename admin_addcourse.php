@@ -149,7 +149,7 @@ if(isset($_POST["addbtn"]))
               <ul class="nav navbar-nav side-nav">
 
                 <li class="active">
-                  <a href="admin_student.php"><i class="fa fa-fw fa-table"></i> Add Course</a>
+                  <a href="admin_course.php"><i class="fa fa-fw fa-table"></i> Add Course</a>
                 </li>
 
 
