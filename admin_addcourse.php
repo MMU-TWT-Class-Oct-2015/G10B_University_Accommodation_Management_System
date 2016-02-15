@@ -168,7 +168,7 @@ if(isset($_POST["addbtn"]))
                 <div class="col-lg-12">
                   <h1 class="page-header">
                                 <br>
-                    Add New Student
+                    Add New Course
                   </h1>
 
                 </div>
