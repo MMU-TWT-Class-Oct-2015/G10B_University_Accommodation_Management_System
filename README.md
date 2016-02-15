@@ -127,6 +127,9 @@ At this page, student need to choose the period they want to rent. After clickin
 ![Image of Admin Log in] (https://cloud.githubusercontent.com/assets/16029016/13034853/18a8909a-d37c-11e5-86e3-a63741bdc1ed.jpg)
 <br>
 This page you can see admin Login, admin login page was same page as student login, we do have a function which detect wherther the login id was admin or student.
+*admin Login*
+USERNAME : 1121116666
+PASSWORD : 123456789
 
 **Hall and Room**
 ![Image of View Hall and Room Status 1] (https://cloud.githubusercontent.com/assets/16029012/13040192/e3fa53b6-d3e3-11e5-9861-af4b432addd3.png)
