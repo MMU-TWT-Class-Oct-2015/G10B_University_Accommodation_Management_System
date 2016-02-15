@@ -278,7 +278,7 @@
 
 
 											?>
-<a href="admin_addroom.php" class="btn btn-lg btn-primary btn-block">Add room</a>
+<a href="admin_addroom.php?editid=<?php echo $selecthall?>" " class="btn btn-lg btn-primary btn-block">Add room</a>
 <br>
                                         </tbody>
                                     </table>

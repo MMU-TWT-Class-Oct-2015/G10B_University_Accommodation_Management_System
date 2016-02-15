@@ -12,7 +12,11 @@ if (isset($_SESSION['id']))
   $staff_row = mysql_fetch_assoc($staff_result);
 
 }
+if(isset($_REQUEST["editid"]))
+				{
+						$selectedhid=$_REQUEST["editid"];
 
+				}
 
 
 
@@ -45,7 +49,7 @@ if(isset($_POST["addbtn"]))
     }
     else
     {
-          mysql_query("insert into room (place_id,room_num,room_rent,room_status)values('$nplace_id','$nroom_num','$nroom_rent','$nroom_status')");
+          mysql_query("insert into room (place_id,room_num,room_rent,room_status,hall_id)values('$nplace_id','$nroom_num','$nroom_rent','$nroom_status','$selectedhid')");
 
           ?>
                 <script type="text/javascript">
