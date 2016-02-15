@@ -117,7 +117,7 @@
                 <ul class="nav navbar-nav side-nav">
 					<li>
 
-                        <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> View Hall and Room Status</a>
+                        <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> Hall and Room</a>
                     </li>
                     <li class="active">
                         <a href="admin_pending.php"><i class="fa fa-fw fa-dashboard"></i> Pending Room</a>
@@ -209,7 +209,7 @@
 																	<td><?php echo $wait_start ?></td>
 																	<td><?php echo $wait_end ?></td>
 																	<td><?php echo "<span style='color:orange'>$room_status</span>" ?>
-																		
+
 																		<input type="hidden" name="waiting_id" value="<?php echo $waiting_id; ?>">
 																		<input type="hidden" name="place_id" value="<?php echo $place_id; ?>">
 																		<input type="hidden" name="student_id" value="<?php echo $student_id; ?>">
@@ -218,7 +218,7 @@
 
 																		<button type="submit" title="Update Status" class="btn btn-default btn-primary" style="float:right;" name="upstatusbtn"><i class="glyphicon glyphicon-circle-arrow-up" style="color:white;"></i>
 																		</button>
-																		
+
 																	</td>
 
 															</tr>

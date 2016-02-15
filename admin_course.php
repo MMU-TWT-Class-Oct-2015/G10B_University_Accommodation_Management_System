@@ -12,18 +12,18 @@
 		$staff_row = mysql_fetch_assoc($staff_result);
 
 	}
-	
+
 	if (isset($_POST['sdelbtn']))
 	{
 						$cid=$_POST["course_id"];
 						mysql_query("DELETE FROM course WHERE course_id='$cid'");
-						
+
 						?>
 						<script type="text/javascript">
 								window.alert('The selected course is Deleted.');
 						</script>
 					<?php
-		
+
 	}
 
 ?>
@@ -118,7 +118,7 @@
                 <ul class="nav navbar-nav side-nav">
 					<li>
 
-                        <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> View Hall and Room Status</a>
+                        <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> Hall and Room</a>
                     </li>
                     <li>
                         <a href="admin_pending.php"><i class="fa fa-fw fa-dashboard"></i> Pending Room</a>
@@ -176,26 +176,26 @@
 
 											<?php
 												$c_detail = mysql_query("select * from course");
-																								
+
 												while ($c_row = mysql_fetch_array($c_detail))
 												{
 														$course_id = $c_row['course_id'];
 														$course_title = $c_row['course_title'];
 														$course_leader = $c_row['course_leader'];
 														$department_name = $c_row['department_name'];
-                           
+
 											?>
 															<tr>
 																	<td><?php echo $course_id ?></td>
 																	<td><?php echo $course_title ?></td>
 																	<td><?php echo $course_leader ?></td>
 																	<td><?php echo $department_name ?></td>
-																	
+
 																	<td style="text-align:center;">
 																	<input type="hidden" name="course_id" value="<?php echo $course_id; ?>">
 																	<a href="admin_editcourse.php?editid=<?php echo $course_id?>" title="Edit <?php echo $course_id ?> information." class="btn btn-default btn-primary" style="" name="seditbtn"><i class="glyphicon glyphicon-pencil" style="color:white;"></i></a>
 																	<button type="submit" title="Delete <?php echo $course_id ?> record." class="btn btn-default btn-primary" style="" name="sdelbtn"><i class="glyphicon glyphicon-remove" style="color:white;"></i></button>
-																	
+
 																	</td>
 															</tr>
 														<?php

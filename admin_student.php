@@ -118,7 +118,7 @@
                 <ul class="nav navbar-nav side-nav">
 					<li>
 
-                        <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> View Hall and Room Status</a>
+                        <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> Hall and Room</a>
                     </li>
                     <li >
                         <a href="admin_pending.php"><i class="fa fa-fw fa-dashboard"></i> Pending Room</a>

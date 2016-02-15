@@ -12,13 +12,13 @@
 		$staff_row = mysql_fetch_assoc($staff_result);
 
 	}
-	
+
     if(isset($_POST['place_id']))
 	{	$pid=$_POST['place_id'];
 		$update_detail = mysql_query("select * from student,agreement where agreement.place_id = '$pid' and agreement.student_id=student.student_id");
 		$uprow = mysql_fetch_assoc($update_detail);
-		$sid = $uprow["student_id"];   
-		
+		$sid = $uprow["student_id"];
+
         mysql_query("update room set room_status = 'None' where place_id='$pid'");
 		mysql_query("update student set student_status = 'None' where student_id='$sid'");
 		mysql_query("DELETE FROM agreement WHERE place_id='$pid' and student_id='$sid'");
@@ -27,7 +27,7 @@
 								window.alert('Sucess to Checkout');
 						</script>
 		<?php
-     
+
     }
 
 
@@ -122,7 +122,7 @@
                 <ul class="nav navbar-nav side-nav">
 					<li>
 
-                        <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> View Hall and Room Status</a>
+                        <a href="admin_index.php"><i class="fa fa-fw fa-table"></i> Hall and Room</a>
                     </li>
                     <li>
                         <a href="admin_pending.php"><i class="fa fa-fw fa-dashboard"></i> Pending Room</a>
@@ -145,7 +145,7 @@
         </nav>
 
         <div id="page-wrapper">
-		
+
             <div class="container-fluid">
 
                 <!-- Page Heading -->
@@ -177,7 +177,7 @@
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-hover table-striped">
-									
+
                                         <thead>
                                             <tr>
                                                 <th>Place ID</th>
@@ -247,16 +247,16 @@
 											?>
 
                                         </tbody>
-									
+
                                     </table>
-                                   
-                                  
-                                
+
+
+
                         </div>
                     </div>
                 </div>
                 <!-- /.row -->
-			
+
             </div>
             <!-- /.container-fluid -->
 
